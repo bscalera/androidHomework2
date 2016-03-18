@@ -1,4 +1,4 @@
-package androidclass.homework2;
+package com.example.m_alrajab.u4_storingdata_demo;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;
