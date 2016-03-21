@@ -61,7 +61,7 @@
             android:inputType="textPassword"
             android:hint="i.e. 1234"
             android:ems="10"
-            android:id="@+id/editText_name_MA2"
+            android:id="@+id/editText_password_MA2"
             />
     </TableLayout>
     <LinearLayout
