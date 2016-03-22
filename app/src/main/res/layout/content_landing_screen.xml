@@ -14,6 +14,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:textSize="20sp"
-        android:text="This account is for "/>
+        android:text="This account is for "
+        android:id="@+id/landingScreen_textView"/>
 
 </RelativeLayout>
