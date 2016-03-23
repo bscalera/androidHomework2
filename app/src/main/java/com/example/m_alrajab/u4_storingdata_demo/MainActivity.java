@@ -26,6 +26,15 @@ public class MainActivity extends Activity {
             }
         });
 
+        Button forgot_button=(Button) findViewById(R.id.btn_forgetpassword_MA);
+        forgot_button.setOnClickListener((new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(MainActivity.this, ForgetPassword.class);
+                startActivity(intent);
+            }
+        }));
+
         EditText editText_password=(EditText) findViewById(R.id.editText_password_MA2);
         editText_password.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
