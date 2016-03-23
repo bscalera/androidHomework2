@@ -56,6 +56,12 @@
         android:layout_marginBottom="30sp"
         android:id="@+id/Reg_pass2"
         android:hint="Confirm  password"/>
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="0sp"
+        android:id="@+id/Reg_dateOfBirth"
+        android:hint="Date of birth"/>
 
     <Button
         android:layout_width="fill_parent"
