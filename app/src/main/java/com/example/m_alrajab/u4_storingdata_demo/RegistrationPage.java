@@ -6,6 +6,7 @@ import android.app.DialogFragment;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -14,11 +15,20 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 
+import com.google.android.gms.appindexing.Action;
+import com.google.android.gms.appindexing.AppIndex;
+import com.google.android.gms.common.api.GoogleApiClient;
+
 import java.util.Calendar;
 
 public class RegistrationPage extends AppCompatActivity {
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
+    /**
+     * ATTENTION: This was auto-generated to implement the App Indexing API.
+     * See https://g.co/AppIndexing/AndroidStudio for more information.
+     */
+    private GoogleApiClient client;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,12 +37,12 @@ public class RegistrationPage extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        sharedPreferences=getSharedPreferences("U4_Data", Context.MODE_PRIVATE);
-        editor=sharedPreferences.edit();
+        sharedPreferences = getSharedPreferences("U4_Data", Context.MODE_PRIVATE);
+        editor = sharedPreferences.edit();
 
-        Button reg_page_btn=(Button) findViewById(R.id.btn_Reg);
-        final EditText userName_EditText=(EditText) findViewById(R.id.Reg_UserName);
-        final EditText password_EditText=(EditText) findViewById(R.id.Reg_pass1);
+        Button reg_page_btn = (Button) findViewById(R.id.btn_Reg);
+        final EditText userName_EditText = (EditText) findViewById(R.id.Reg_UserName);
+        final EditText password_EditText = (EditText) findViewById(R.id.Reg_pass1);
 
 
         reg_page_btn.setOnClickListener(new View.OnClickListener() {
@@ -43,17 +53,24 @@ public class RegistrationPage extends AppCompatActivity {
                         password_EditText.getText().toString());
                 editor.commit();
 
-                Intent intent=new Intent(RegistrationPage.this,MainActivity.class);
+                Intent intent = new Intent(RegistrationPage.this, MainActivity.class);
                 startActivity(intent);
             }
         });
 
 
-        EditText reg_page_date_picker=(EditText) findViewById(R.id.Reg_dateOfBirth);
+        EditText reg_page_date_picker = (EditText) findViewById(R.id.Reg_dateOfBirth);
         final int day, month, year;
         final Context context;
 
         reg_page_date_picker.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                    DialogFragment newFragment = new DatePickerFragment();
+                    newFragment.show(getFragmentManager(), "date picker");
+
+            }
             //@Override
 
 
@@ -79,6 +96,48 @@ public class RegistrationPage extends AppCompatActivity {
         });
 
 
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        client.connect();
+        Action viewAction = Action.newAction(
+                Action.TYPE_VIEW, // TODO: choose an action type.
+                "RegistrationPage Page", // TODO: Define a title for the content shown.
+                // TODO: If you have web page content that matches this app activity's content,
+                // make sure this auto-generated web page URL is correct.
+                // Otherwise, set the URL to null.
+                Uri.parse("http://host/path"),
+                // TODO: Make sure this auto-generated app deep link URI is correct.
+                Uri.parse("android-app://com.example.m_alrajab.u4_storingdata_demo/http/host/path")
+        );
+        AppIndex.AppIndexApi.start(client, viewAction);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        Action viewAction = Action.newAction(
+                Action.TYPE_VIEW, // TODO: choose an action type.
+                "RegistrationPage Page", // TODO: Define a title for the content shown.
+                // TODO: If you have web page content that matches this app activity's content,
+                // make sure this auto-generated web page URL is correct.
+                // Otherwise, set the URL to null.
+                Uri.parse("http://host/path"),
+                // TODO: Make sure this auto-generated app deep link URI is correct.
+                Uri.parse("android-app://com.example.m_alrajab.u4_storingdata_demo/http/host/path")
+        );
+        AppIndex.AppIndexApi.end(client, viewAction);
+        client.disconnect();
+    }
 }
