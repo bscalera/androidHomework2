@@ -19,13 +19,15 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="15sp"
         android:id="@+id/Reg_UserName"
-        android:hint="Enter a username"/>
+        android:hint="Enter a username"
+        android:inputType="text"/>
     <EditText
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20sp"
         android:id="@+id/Reg_SName"
-        android:hint="Enter your name"/>
+        android:hint="Enter your name"
+        android:inputType="text"/>
     <Space
         android:layout_width="fill_parent"
         android:layout_height="10dp" />
@@ -34,13 +36,15 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="15sp"
         android:id="@+id/Reg_SMajor"
-        android:hint="Enter your major"/>
+        android:hint="Enter your major"
+        android:inputType="text"/>
     <EditText
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20sp"
         android:id="@+id/Reg_Email"
-        android:hint="Enter your MSU email"/>
+        android:hint="Enter your MSU email"
+        android:inputType="textEmailAddress"/>
     <Space
         android:layout_width="fill_parent"
         android:layout_height="10dp" />
@@ -49,19 +53,22 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="15sp"
         android:id="@+id/Reg_pass1"
-        android:hint="Enter your password"/>
+        android:hint="Enter your password"
+        android:inputType="textPassword"/>
     <EditText
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="30sp"
         android:id="@+id/Reg_pass2"
-        android:hint="Confirm  password"/>
+        android:hint="Confirm  password"
+        android:inputType="textPassword"/>
     <EditText
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="0sp"
         android:id="@+id/Reg_dateOfBirth"
-        android:hint="Date of birth"/>
+        android:hint="Date of birth"
+        android:focusable="false"/>
 
     <Button
         android:layout_width="fill_parent"

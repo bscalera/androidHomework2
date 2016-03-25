@@ -59,7 +59,7 @@ public class RegistrationPage extends AppCompatActivity {
         });
 
 
-        EditText reg_page_date_picker = (EditText) findViewById(R.id.Reg_dateOfBirth);
+        final EditText reg_page_date_picker = (EditText) findViewById(R.id.Reg_dateOfBirth);
         final int day, month, year;
         final Context context;
 
@@ -91,6 +91,10 @@ public class RegistrationPage extends AppCompatActivity {
 
                 public void onDateSet(DatePicker view, int year, int month, int day) {
                     // Do something with the date chosen by the user
+                    reg_page_date_picker.setText(new StringBuilder()
+
+                            //Month is 0 so add 1
+                    .append(month +1).append("/").append(day).append("/").append(year));
                 }
             }
         });
