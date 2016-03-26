@@ -3,4 +3,15 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_registration_page">Registration Page</string>
     <string name="title_activity_landing_screen">Welcome to MSU</string>
+    <string-array name="majors_array">
+        <item>Computer Science</item>
+        <item>Information Technology</item>
+        <item>Chemistry</item>
+        <item>Business</item>
+        <item>Sociology</item>
+        <item>Psychology</item>
+        <item>Art</item>
+        <item>English</item>
+        <item>Physics</item>
+    </string-array>
 </resources>

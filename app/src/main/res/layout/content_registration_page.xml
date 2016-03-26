@@ -31,6 +31,7 @@
     <Space
         android:layout_width="fill_parent"
         android:layout_height="10dp" />
+    <!--
     <EditText
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -38,6 +39,17 @@
         android:id="@+id/Reg_SMajor"
         android:hint="Enter your major"
         android:inputType="text"/>
+        -->
+    <Spinner
+        android:id="@+id/major_spinner"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter your major"
+        android:entries="@array/majors_array" />
+    <!--
+    http://developer.android.com/guide/topics/ui/controls/spinner.html
+    https://www.youtube.com/watch?v=NoSri0OSOaA
+    -->
     <EditText
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
