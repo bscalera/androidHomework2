@@ -17,4 +17,12 @@
         android:text="This account is for "
         android:id="@+id/landingScreen_textView"/>
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scaleType="center"
+        android:src="@drawable/logo" />
+
+
+
 </RelativeLayout>
