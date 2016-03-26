@@ -14,4 +14,5 @@
         <item>English</item>
         <item>Physics</item>
     </string-array>
+    <string name="majorSpinnerDefaultValue">Enter you major</string>
 </resources>

@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.android.gms.appindexing.Action;
@@ -51,8 +52,7 @@ public class RegistrationPage extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                if (password_EditText.getText().length() < 6)
-                {
+                if (password_EditText.getText().length() < 6) {
                     /*
                     If the password is not long enough, a message is shown that says that the password needs to be longer.
                     http://developer.android.com/guide/topics/ui/notifiers/toasts.html
@@ -65,21 +65,16 @@ public class RegistrationPage extends AppCompatActivity {
                     Toast toast = Toast.makeText(context, text, duration);
                     toast.show();
                     //Toast.makeText(context, "Password must be at least 6 characters", Toast.LENGTH_LONG);
-                }
-                else
-                {
+                } else {
                     //http://stackoverflow.com/questions/2275004/in-java-how-do-i-check-if-a-string-contains-a-substring-ignoring-case
-                    if (email_EditText.getText().toString().toLowerCase().contains("montclair.edu"))
-                    {
+                    if (email_EditText.getText().toString().toLowerCase().contains("montclair.edu")) {
                         editor.putString(userName_EditText.getText().toString(),
                                 password_EditText.getText().toString());
                         editor.commit();
 
                         Intent intent = new Intent(RegistrationPage.this, MainActivity.class);
                         startActivity(intent);
-                    }
-                    else
-                    {
+                    } else {
                          /*
                          If the email is not a montclair email, a message is shown that says that the email needs to be a montclair email.
                          */
@@ -95,6 +90,12 @@ public class RegistrationPage extends AppCompatActivity {
 
             }
         });
+
+        //This should set the title for the spinner.
+        Spinner spinner = (Spinner) findViewById(R.id.majorSpinner);
+        spinner.setPrompt("@string/majorSpinnerDefaultValue");
+        //http://stackoverflow.com/questions/6071026/how-to-add-title-in-spinner-in-android
+
 
 
         /*

@@ -41,12 +41,16 @@
         android:inputType="text"/>
         -->
     <Spinner
-        android:id="@+id/major_spinner"
+        android:id="@+id/majorSpinner"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:hint="Enter your major"
+        android:prompt="@string/majorSpinnerDefaultValue"
         android:entries="@array/majors_array" />
     <!--
+    android:prompt should be able to set a title for the spinner
+    http://stackoverflow.com/questions/6071026/how-to-add-title-in-spinner-in-android
+
     http://developer.android.com/guide/topics/ui/controls/spinner.html
     https://www.youtube.com/watch?v=NoSri0OSOaA
     -->
