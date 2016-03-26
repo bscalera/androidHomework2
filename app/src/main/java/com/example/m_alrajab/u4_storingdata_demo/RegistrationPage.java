@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
@@ -43,18 +44,55 @@ public class RegistrationPage extends AppCompatActivity {
         Button reg_page_btn = (Button) findViewById(R.id.btn_Reg);
         final EditText userName_EditText = (EditText) findViewById(R.id.Reg_UserName);
         final EditText password_EditText = (EditText) findViewById(R.id.Reg_pass1);
+        final EditText email_EditText = (EditText) findViewById(R.id.Reg_Email);
 
 
         reg_page_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                editor.putString(userName_EditText.getText().toString(),
-                        password_EditText.getText().toString());
-                editor.commit();
+                if (password_EditText.getText().length() < 6)
+                {
+                    /*
+                    If the password is not long enough, a message is shown that says that the password needs to be longer.
+                    http://developer.android.com/guide/topics/ui/notifiers/toasts.html
+                    */
 
-                Intent intent = new Intent(RegistrationPage.this, MainActivity.class);
-                startActivity(intent);
+                    Context context = getApplicationContext();
+                    CharSequence text = "Password must be at least 6 characters";
+                    int duration = Toast.LENGTH_LONG;
+
+                    Toast toast = Toast.makeText(context, text, duration);
+                    toast.show();
+                    //Toast.makeText(context, "Password must be at least 6 characters", Toast.LENGTH_LONG);
+                }
+                else
+                {
+                    //http://stackoverflow.com/questions/2275004/in-java-how-do-i-check-if-a-string-contains-a-substring-ignoring-case
+                    if (email_EditText.getText().toString().toLowerCase().contains("montclair.edu"))
+                    {
+                        editor.putString(userName_EditText.getText().toString(),
+                                password_EditText.getText().toString());
+                        editor.commit();
+
+                        Intent intent = new Intent(RegistrationPage.this, MainActivity.class);
+                        startActivity(intent);
+                    }
+                    else
+                    {
+                         /*
+                         If the email is not a montclair email, a message is shown that says that the email needs to be a montclair email.
+                         */
+
+                        Context context = getApplicationContext();
+                        CharSequence text = "Use a montclair.edu email address";
+                        int duration = Toast.LENGTH_LONG;
+
+                        Toast toast = Toast.makeText(context, text, duration);
+                        toast.show();
+                    }
+                }
+
             }
         });
 
