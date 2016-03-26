@@ -24,13 +24,13 @@
     <EditText
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20sp"
+        android:layout_marginBottom="17sp"
         android:id="@+id/Reg_SName"
         android:hint="Enter your name"
         android:inputType="text"/>
     <Space
         android:layout_width="fill_parent"
-        android:layout_height="10dp" />
+        android:layout_height="0dp" />
     <!--
     <EditText
         android:layout_width="fill_parent"
@@ -40,6 +40,12 @@
         android:hint="Enter your major"
         android:inputType="text"/>
         -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:text="@string/majorSpinnerDefaultValue"
+        android:id="@+id/forgetPassword_textView" />
     <Spinner
         android:id="@+id/majorSpinner"
         android:layout_width="fill_parent"
@@ -54,6 +60,9 @@
     http://developer.android.com/guide/topics/ui/controls/spinner.html
     https://www.youtube.com/watch?v=NoSri0OSOaA
     -->
+    <Space
+        android:layout_width="fill_parent"
+        android:layout_height="3dp" />
     <EditText
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
