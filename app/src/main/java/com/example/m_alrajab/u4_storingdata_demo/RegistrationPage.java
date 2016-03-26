@@ -59,6 +59,20 @@ public class RegistrationPage extends AppCompatActivity {
         });
 
 
+        /*
+        Here is the code for the date picker.
+        When the EditText field is clicked, the keyboard does not appear on the screen because it has the attribute "android:focusable="false"".
+        When the EditText field is clicked the date picker appears.
+        After a date is picked, it is put into the EditText field.
+
+        http://stackoverflow.com/questions/14933330/datepicker-how-to-popup-datepicker-when-click-on-edittext
+        http://stackoverflow.com/questions/17808373/popup-datepicker-for-edittext
+        http://developer.android.com/reference/android/app/DatePickerDialog.html
+        http://developer.android.com/guide/topics/ui/controls/pickers.html
+        http://stackoverflow.com/questions/7454390/changing-textview-text-on-button-click-android
+        */
+
+
         final EditText reg_page_date_picker = (EditText) findViewById(R.id.Reg_dateOfBirth);
         final int day, month, year;
         final Context context;
