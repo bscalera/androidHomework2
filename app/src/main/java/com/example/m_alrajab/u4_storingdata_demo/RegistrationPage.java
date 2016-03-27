@@ -46,6 +46,7 @@ public class RegistrationPage extends AppCompatActivity {
         final EditText userName_EditText = (EditText) findViewById(R.id.Reg_UserName);
         final EditText password_EditText = (EditText) findViewById(R.id.Reg_pass1);
         final EditText email_EditText = (EditText) findViewById(R.id.Reg_Email);
+        final EditText confirm_EditText = (EditText) findViewById(R.id.Reg_pass2);
 
 
         reg_page_btn.setOnClickListener(new View.OnClickListener() {
@@ -66,28 +67,40 @@ public class RegistrationPage extends AppCompatActivity {
                     toast.show();
                     //Toast.makeText(context, "Password must be at least 6 characters", Toast.LENGTH_LONG);
                 } else {
-                    //http://stackoverflow.com/questions/2275004/in-java-how-do-i-check-if-a-string-contains-a-substring-ignoring-case
-                    if (email_EditText.getText().toString().toLowerCase().contains("montclair.edu")) {
-                        editor.putString(userName_EditText.getText().toString(),
-                                password_EditText.getText().toString());
-                        editor.commit();
+                    //check if the password matches
+                    if (password_EditText.getText().toString().equals(confirm_EditText.getText().toString()))
+                    {
+                        //http://stackoverflow.com/questions/2275004/in-java-how-do-i-check-if-a-string-contains-a-substring-ignoring-case
+                        if (email_EditText.getText().toString().toLowerCase().contains("montclair.edu")) {
+                            editor.putString(userName_EditText.getText().toString(),
+                                    password_EditText.getText().toString());
+                            editor.commit();
 
-                        Intent intent = new Intent(RegistrationPage.this, MainActivity.class);
-                        startActivity(intent);
-                    } else {
+                            Intent intent = new Intent(RegistrationPage.this, MainActivity.class);
+                            startActivity(intent);
+                        } else {
                          /*
                          If the email is not a montclair email, a message is shown that says that the email needs to be a montclair email.
                          */
 
+                            Context context = getApplicationContext();
+                            CharSequence text = "Use a montclair.edu email address";
+                            int duration = Toast.LENGTH_LONG;
+
+                            Toast toast = Toast.makeText(context, text, duration);
+                            toast.show();
+                        }
+                    }
+                    else
+                    {
                         Context context = getApplicationContext();
-                        CharSequence text = "Use a montclair.edu email address";
+                        CharSequence text = "Password and confirm password should be the same";
                         int duration = Toast.LENGTH_LONG;
 
                         Toast toast = Toast.makeText(context, text, duration);
                         toast.show();
                     }
                 }
-
             }
         });
 
