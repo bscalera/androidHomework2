@@ -72,9 +72,23 @@ public class RegistrationPage extends AppCompatActivity {
                     {
                         //http://stackoverflow.com/questions/2275004/in-java-how-do-i-check-if-a-string-contains-a-substring-ignoring-case
                         if (email_EditText.getText().toString().toLowerCase().contains("montclair.edu")) {
-                            editor.putString(userName_EditText.getText().toString(),
-                                    password_EditText.getText().toString());
+
+                            editor.putString(getResources().getString(R.string.U4_Username),
+                                    userName_EditText.getText().toString()
+                                    );
+
+
+                            editor.putString(getResources().getString(R.string.U4_Password),
+                                    userName_EditText.getText().toString()
+                                    );
                             editor.commit();
+
+
+                            /*
+                            editor.putString(userName_EditText.getText().toString(),
+                            password_EditText.getText().toString());
+                            editor.commit();
+                            */
 
                             Intent intent = new Intent(RegistrationPage.this, MainActivity.class);
                             startActivity(intent);

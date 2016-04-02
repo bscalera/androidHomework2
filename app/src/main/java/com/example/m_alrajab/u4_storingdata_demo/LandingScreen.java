@@ -21,7 +21,7 @@ public class LandingScreen extends AppCompatActivity {
 
         TextView textView=(TextView)findViewById(R.id.landingScreen_textView);
         textView.setText(textView.getText().toString()+
-                        sharedPreferences.getString("admin","Not found")
+                        sharedPreferences.getString(getResources().getString(R.string.U4_Username),"Not found")
         );
 
 
