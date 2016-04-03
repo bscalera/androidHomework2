@@ -66,7 +66,7 @@ public class RegistrationPage extends AppCompatActivity {
         });
 
 
-
+/*
         sharedPreferences = getSharedPreferences("U4_Data", Context.MODE_PRIVATE);
         editor = sharedPreferences.edit();
 
@@ -86,7 +86,7 @@ public class RegistrationPage extends AppCompatActivity {
                     If the password is not long enough, a message is shown that says that the password needs to be longer.
                     http://developer.android.com/guide/topics/ui/notifiers/toasts.html
                     */
-
+/*
                     Context context = getApplicationContext();
                     CharSequence text = "Password must be at least 6 characters";
                     int duration = Toast.LENGTH_LONG;
@@ -117,14 +117,14 @@ public class RegistrationPage extends AppCompatActivity {
                             password_EditText.getText().toString());
                             editor.commit();
                             */
-
+/*
                             Intent intent = new Intent(RegistrationPage.this, MainActivity.class);
                             startActivity(intent);
                         } else {
                          /*
                          If the email is not a montclair email, a message is shown that says that the email needs to be a montclair email.
                          */
-
+/*
                             Context context = getApplicationContext();
                             CharSequence text = "Use a montclair.edu email address";
                             int duration = Toast.LENGTH_LONG;
@@ -150,7 +150,7 @@ public class RegistrationPage extends AppCompatActivity {
         Spinner spinner = (Spinner) findViewById(R.id.Reg_SMajor);
         spinner.setPrompt("@string/majorSpinnerDefaultValue");
         //http://stackoverflow.com/questions/6071026/how-to-add-title-in-spinner-in-android
-
+/*
 
 
         /*
