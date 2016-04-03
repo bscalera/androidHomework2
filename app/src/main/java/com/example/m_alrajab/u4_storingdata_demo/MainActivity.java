@@ -12,10 +12,12 @@ import android.widget.TextView;
 
 public class MainActivity extends Activity {
 
+    private U5_DatabaseHelper myDB;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.content_main);
+        myDB=new U5_DatabaseHelper(this);
 
         Button reg_button=(Button) findViewById(R.id.btn_register_MA);
         reg_button.setOnClickListener(new OnClickListener() {
