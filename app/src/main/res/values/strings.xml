@@ -14,7 +14,7 @@
         <item>English</item>
         <item>Physics</item>
     </string-array>
-    <string name="majorSpinnerDefaultValue">"  Enter your major"</string>
+    <string name="Reg_SMajorDefaultValue">"  Enter your major"</string>
     <string name="U4_Username">U4_Username</string>
     <string name="U4_Password">U4_Password</string>
 </resources>

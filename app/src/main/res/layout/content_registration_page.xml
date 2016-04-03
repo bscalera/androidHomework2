@@ -44,14 +44,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="15sp"
-        android:text="@string/majorSpinnerDefaultValue"
+        android:text="@string/Reg_SMajorDefaultValue"
         android:id="@+id/forgetPassword_textView" />
     <Spinner
-        android:id="@+id/majorSpinner"
+        android:id="@+id/Reg_SMajor"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:hint="Enter your major"
-        android:prompt="@string/majorSpinnerDefaultValue"
+        android:prompt="@string/Reg_SMajorDefaultValue"
         android:entries="@array/majors_array" />
     <!--
     android:prompt should be able to set a title for the spinner

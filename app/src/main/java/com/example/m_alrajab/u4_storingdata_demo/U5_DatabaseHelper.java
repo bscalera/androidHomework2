@@ -1,5 +1,6 @@
 package com.example.m_alrajab.u4_storingdata_demo;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -35,6 +36,18 @@ public class U5_DatabaseHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS"+FeedEntry.TABLE_NAME);
         onCreate(db);
-
+    }
+    public boolean insertData(String username, String major, String password)
+    {
+        SQLiteDatabase db=this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(FeedEntry.COL_USERNAME, username);
+        contentValues.put(FeedEntry.COL_MAJOR, major);
+        contentValues.put(FeedEntry.COL_PASS, password);
+        long result = db.insert(FeedEntry.TABLE_NAME,null,contentValues);
+        if(result==-1)
+            return false;
+        else
+            return true;
     }
 }

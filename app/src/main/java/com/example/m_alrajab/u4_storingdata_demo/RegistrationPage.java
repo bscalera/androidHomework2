@@ -32,12 +32,40 @@ public class RegistrationPage extends AppCompatActivity {
      */
     private GoogleApiClient client;
 
+    private U5_DatabaseHelper myDB;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration_page);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        myDB =new U5_DatabaseHelper(this);
+
+        final EditText usrname=(EditText) findViewById(R.id.Reg_UserName);
+        final Spinner mjr= (Spinner) findViewById(R.id.Reg_SMajor);
+        final EditText pss=(EditText) findViewById(R.id.Reg_pass1);
+
+        Button regBtn=(Button) findViewById(R.id.btn_Reg);
+
+        regBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                boolean isInserted = myDB.insertData(
+                        usrname.getText().toString(),
+                        mjr.getSelectedItem().toString(),  //http://stackoverflow.com/questions/1947933/how-to-get-spinner-value
+                        pss.getText().toString()
+
+                );
+                if (isInserted = true)
+                    Toast.makeText(RegistrationPage.this, "Data inserted", Toast.LENGTH_LONG).show();
+                else
+                    Toast.makeText(RegistrationPage.this, "Data not inserted", Toast.LENGTH_LONG).show();
+            }
+        });
+
+
 
         sharedPreferences = getSharedPreferences("U4_Data", Context.MODE_PRIVATE);
         editor = sharedPreferences.edit();
@@ -119,7 +147,7 @@ public class RegistrationPage extends AppCompatActivity {
         });
 
         //This should set the title for the spinner.
-        Spinner spinner = (Spinner) findViewById(R.id.majorSpinner);
+        Spinner spinner = (Spinner) findViewById(R.id.Reg_SMajor);
         spinner.setPrompt("@string/majorSpinnerDefaultValue");
         //http://stackoverflow.com/questions/6071026/how-to-add-title-in-spinner-in-android
 
