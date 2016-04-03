@@ -2,8 +2,11 @@ package com.example.m_alrajab.u4_storingdata_demo;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
+
 import com.example.m_alrajab.u4_storingdata_demo.DBContract.*;
 
 /**
@@ -50,4 +53,43 @@ public class U5_DatabaseHelper extends SQLiteOpenHelper {
         else
             return true;
     }
+
+
+    public Cursor getAllDate(){
+        SQLiteDatabase db=this.getWritableDatabase();
+        Cursor res=db.rawQuery("select * from " + FeedEntry.TABLE_NAME, null);
+        return res;
+    }
+
+    public boolean updateDate(String id, String username, String major, String password){
+        SQLiteDatabase db=this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(FeedEntry.COL_ID, id);
+        contentValues.put(FeedEntry.COL_USERNAME, username);
+        contentValues.put(FeedEntry.COL_MAJOR, major);
+        contentValues.put(FeedEntry.COL_PASS, password);
+        db.update(FeedEntry.TABLE_NAME, contentValues, "ID=? ", new String[]{id});
+        return true;
+    }
+
+    public Integer deleteData(String id){
+        SQLiteDatabase db=this.getWritableDatabase();
+        return db.delete(FeedEntry.TABLE_NAME, "ID = ?", new String[]{id}); // return 0 or less if nothing d
+    }
+
+    public void deleteDatabase(String dbName){
+        this.deleteDatabase(dbName);
+    }
+
+    public Cursor getRecForUsername(String username){
+        SQLiteDatabase db=this.getWritableDatabase();
+        try {
+            Cursor res = db.rawQuery("SELECT " + FeedEntry.COL_ID + " FROM " + FeedEntry.TABLE_NAME + " WHERE " + FeedEntry.COL_USERNAME + " LIKE '" + username + "' ; ", null);
+            return res;
+        } catch (Exception e){
+            Log.e("Hmm", "fix it");
+            return null;
+        }
+    }
+
 }
