@@ -95,7 +95,7 @@ public class RegistrationPage extends AppCompatActivity {
                     } else {
                         //check if there is a letter and a number in the password
                         //http://stackoverflow.com/questions/30327319/how-to-know-if-a-string-only-contains-0-to-9-and-no-other-characters
-                        if (!((password_EditText.getText().toString().matches("[a-zA-Z]+")) && (password_EditText.getText().toString().matches("[0-9]+"))))
+                        if (((password_EditText.getText().toString().matches(".*[a-zA-Z].*")) && (password_EditText.getText().toString().matches(".*[0-9].*"))) == false)
                         {
                             CharSequence text = "Password must contain a letter and a number";
                             Toast toast = Toast.makeText(getApplicationContext(), text, Toast.LENGTH_LONG);
