@@ -42,7 +42,7 @@ public class ForgetPassword extends AppCompatActivity {
 
     //show the data in the database
     public void showAllData(View v){
-        Cursor cursor = myDB.getAllDate();
+        Cursor cursor = myDB.getAllData();
         if(cursor.getCount()==0) return;
 
         StringBuffer allData=new StringBuffer("This is what is in the first 3 records: ");

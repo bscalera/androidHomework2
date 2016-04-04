@@ -55,13 +55,13 @@ public class U5_DatabaseHelper extends SQLiteOpenHelper {
     }
 
 
-    public Cursor getAllDate(){
+    public Cursor getAllData(){
         SQLiteDatabase db=this.getWritableDatabase();
         Cursor res=db.rawQuery("select * from " + FeedEntry.TABLE_NAME, null);
         return res;
     }
 
-    public boolean updateDate(String id, String username, String major, String password){
+    public boolean updateData(String id, String username, String major, String password){
         SQLiteDatabase db=this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(FeedEntry.COL_ID, id);
