@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 public class ForgetPassword extends AppCompatActivity {
@@ -27,13 +28,14 @@ public class ForgetPassword extends AppCompatActivity {
             }
         });
 
+        final EditText usernameToCheck = (EditText) findViewById(R.id.fp_username_editText);
         //check record button
         Button recBtn=(Button) findViewById(R.id.fp_chckRec_btn);
 
-        allBtn.setOnClickListener(new View.OnClickListener() {
+        recBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //checkRecord(view, usernameToCheck.getText().toString());
+                checkRecord(view, usernameToCheck.getText().toString());
             }
         });
     }
@@ -57,6 +59,9 @@ public class ForgetPassword extends AppCompatActivity {
     public void checkRecord(View view, String username) {
         Cursor cursor = myDB.getRecForUsername(username);
 
-        if (cursor.getCount() == 0) return;
+        if (cursor.getCount() == 0)
+            Snackbar.make(view, "No record exists", Snackbar.LENGTH_LONG).show();
+        else
+            Snackbar.make(view, "Record exists", Snackbar.LENGTH_LONG).show();
     }
 }
