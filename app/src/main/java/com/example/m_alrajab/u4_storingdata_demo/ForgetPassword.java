@@ -1,6 +1,7 @@
 package com.example.m_alrajab.u4_storingdata_demo;
 
 import android.database.Cursor;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -25,9 +26,19 @@ public class ForgetPassword extends AppCompatActivity {
                 showAllData(view);
             }
         });
+
+        //check record button
+        Button recBtn=(Button) findViewById(R.id.fp_chckRec_btn);
+
+        allBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //checkRecord(view, usernameToCheck.getText().toString());
+            }
+        });
     }
 
-    //show the data
+    //show the data in the database
     public void showAllData(View v){
         Cursor cursor = myDB.getAllDate();
         if(cursor.getCount()==0) return;
@@ -41,5 +52,11 @@ public class ForgetPassword extends AppCompatActivity {
             if (Integer.parseInt(cursor.getString(0))>3) break;
         }
         Toast.makeText(ForgetPassword.this, allData.toString(), Toast.LENGTH_LONG).show();
+    }
+
+    public void checkRecord(View view, String username) {
+        Cursor cursor = myDB.getRecForUsername(username);
+
+        if (cursor.getCount() == 0) return;
     }
 }
