@@ -40,13 +40,14 @@ public class U5_DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS"+FeedEntry.TABLE_NAME);
         onCreate(db);
     }
-    public boolean insertData(String username, String major, String password)
+    public boolean insertData(String username, String major, String password, String email)
     {
         SQLiteDatabase db=this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(FeedEntry.COL_USERNAME, username);
         contentValues.put(FeedEntry.COL_MAJOR, major);
         contentValues.put(FeedEntry.COL_PASS, password);
+        contentValues.put(FeedEntry.COL_EMAIL, email);
         long result = db.insert(FeedEntry.TABLE_NAME,null,contentValues);
         if(result==-1)
             return false;

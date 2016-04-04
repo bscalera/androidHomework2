@@ -93,8 +93,12 @@ public class RegistrationPage extends AppCompatActivity {
                         Toast toast = Toast.makeText(getApplicationContext(), text, Toast.LENGTH_LONG);
                         toast.show();
                     } else {
-                        //check if there is a letter and a number in the password
-                        //http://stackoverflow.com/questions/30327319/how-to-know-if-a-string-only-contains-0-to-9-and-no-other-characters
+                        /*
+                        check if there is a letter and a number in the password
+                        http://stackoverflow.com/questions/30327319/how-to-know-if-a-string-only-contains-0-to-9-and-no-other-characters
+                        http://stackoverflow.com/questions/10575624/java-string-see-if-a-string-contains-only-numbers-and-not-letters
+                        http://stackoverflow.com/questions/11533474/java-how-to-test-if-a-string-contains-both-letter-and-number
+                        */
                         if (((password_EditText.getText().toString().matches(".*[a-zA-Z].*")) && (password_EditText.getText().toString().matches(".*[0-9].*"))) == false)
                         {
                             CharSequence text = "Password must contain a letter and a number";
@@ -119,11 +123,12 @@ public class RegistrationPage extends AppCompatActivity {
                                 if (password_EditText.getText().toString().equals(confirm_EditText.getText().toString())) {
                                     //http://stackoverflow.com/questions/2275004/in-java-how-do-i-check-if-a-string-contains-a-substring-ignoring-case
                                     if (email_EditText.getText().toString().toLowerCase().contains("montclair.edu")) {
-
+                                        //insert the data into the database
                                         boolean isInserted = myDB.insertData(
                                                 usrname.getText().toString(),
                                                 mjr.getSelectedItem().toString(),  //http://stackoverflow.com/questions/1947933/how-to-get-spinner-value
-                                                pss.getText().toString()
+                                                pss.getText().toString(),
+                                                email_EditText.getText().toString()
 
                                         );
                                         if (isInserted = true)

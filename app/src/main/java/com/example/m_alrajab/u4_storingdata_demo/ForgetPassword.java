@@ -48,7 +48,7 @@ public class ForgetPassword extends AppCompatActivity {
         StringBuffer allData=new StringBuffer("This is what is in the first 3 records: ");
         while(cursor.moveToNext()) {
             allData.append("\nID: " + cursor.getString(0) +
-                "username: " + cursor.getString(1) +
+                "  username: " + cursor.getString(1) +
                 " "); //you can add more columns here
 
             if (Integer.parseInt(cursor.getString(0))>3) break;
