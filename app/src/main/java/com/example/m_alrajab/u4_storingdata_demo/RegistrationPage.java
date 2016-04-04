@@ -93,35 +93,43 @@ public class RegistrationPage extends AppCompatActivity {
                         Toast toast = Toast.makeText(getApplicationContext(), text, Toast.LENGTH_LONG);
                         toast.show();
                     } else {
-                        if (password_EditText.getText().length() < 6) {
-                        /*
-                        If the password is not long enough, a message is shown that says that the password needs to be longer.
-                        http://developer.android.com/guide/topics/ui/notifiers/toasts.html
-                        */
-
-                            Context context = getApplicationContext();
-                            CharSequence text = "Password must be at least 6 characters";
-                            int duration = Toast.LENGTH_LONG;
-
-                            Toast toast = Toast.makeText(context, text, duration);
+                        //check if there is a letter and a number in the password
+                        //http://stackoverflow.com/questions/30327319/how-to-know-if-a-string-only-contains-0-to-9-and-no-other-characters
+                        if (!((password_EditText.getText().toString().matches("[a-zA-Z]+")) && (password_EditText.getText().toString().matches("[0-9]+"))))
+                        {
+                            CharSequence text = "Password must contain a letter and a number";
+                            Toast toast = Toast.makeText(getApplicationContext(), text, Toast.LENGTH_LONG);
                             toast.show();
-                            //Toast.makeText(context, "Password must be at least 6 characters", Toast.LENGTH_LONG);
-                        } else {
-                            //check if the password matches
-                            if (password_EditText.getText().toString().equals(confirm_EditText.getText().toString())) {
-                                //http://stackoverflow.com/questions/2275004/in-java-how-do-i-check-if-a-string-contains-a-substring-ignoring-case
-                                if (email_EditText.getText().toString().toLowerCase().contains("montclair.edu")) {
+                        }
+                        else {
+                            if (password_EditText.getText().length() < 6) {
+                                /*
+                                If the password is not long enough, a message is shown that says that the password needs to be longer.
+                                http://developer.android.com/guide/topics/ui/notifiers/toasts.html
+                                */
+                                Context context = getApplicationContext();
+                                CharSequence text = "Password must be at least 6 characters";
+                                int duration = Toast.LENGTH_LONG;
 
-                                    boolean isInserted = myDB.insertData(
-                                            usrname.getText().toString(),
-                                            mjr.getSelectedItem().toString(),  //http://stackoverflow.com/questions/1947933/how-to-get-spinner-value
-                                            pss.getText().toString()
+                                Toast toast = Toast.makeText(context, text, duration);
+                                toast.show();
+                                //Toast.makeText(context, "Password must be at least 6 characters", Toast.LENGTH_LONG);
+                            } else {
+                                //check if the password matches
+                                if (password_EditText.getText().toString().equals(confirm_EditText.getText().toString())) {
+                                    //http://stackoverflow.com/questions/2275004/in-java-how-do-i-check-if-a-string-contains-a-substring-ignoring-case
+                                    if (email_EditText.getText().toString().toLowerCase().contains("montclair.edu")) {
 
-                                    );
-                                    if (isInserted = true)
-                                        Toast.makeText(RegistrationPage.this, "Data inserted", Toast.LENGTH_LONG).show();
-                                    else
-                                        Toast.makeText(RegistrationPage.this, "Data not inserted", Toast.LENGTH_LONG).show();
+                                        boolean isInserted = myDB.insertData(
+                                                usrname.getText().toString(),
+                                                mjr.getSelectedItem().toString(),  //http://stackoverflow.com/questions/1947933/how-to-get-spinner-value
+                                                pss.getText().toString()
+
+                                        );
+                                        if (isInserted = true)
+                                            Toast.makeText(RegistrationPage.this, "Data inserted", Toast.LENGTH_LONG).show();
+                                        else
+                                            Toast.makeText(RegistrationPage.this, "Data not inserted", Toast.LENGTH_LONG).show();
 
                                         /*
                                         editor.putString(getResources().getString(R.string.U4_Username),
@@ -138,27 +146,28 @@ public class RegistrationPage extends AppCompatActivity {
                                         editor.commit();
                                         */
 
-                                    Intent intent = new Intent(RegistrationPage.this, MainActivity.class);
-                                    startActivity(intent);
-                                } else {
+                                        Intent intent = new Intent(RegistrationPage.this, MainActivity.class);
+                                        startActivity(intent);
+                                    } else {
                                      /*
                                      If the email is not a montclair email, a message is shown that says that the email needs to be a montclair email.
                                      */
 
+                                        Context context = getApplicationContext();
+                                        CharSequence text = "Use a montclair.edu email address";
+                                        int duration = Toast.LENGTH_LONG;
+
+                                        Toast toast = Toast.makeText(context, text, duration);
+                                        toast.show();
+                                    }
+                                } else {
                                     Context context = getApplicationContext();
-                                    CharSequence text = "Use a montclair.edu email address";
+                                    CharSequence text = "Password and confirm password should be the same";
                                     int duration = Toast.LENGTH_LONG;
 
                                     Toast toast = Toast.makeText(context, text, duration);
                                     toast.show();
                                 }
-                            } else {
-                                Context context = getApplicationContext();
-                                CharSequence text = "Password and confirm password should be the same";
-                                int duration = Toast.LENGTH_LONG;
-
-                                Toast toast = Toast.makeText(context, text, duration);
-                                toast.show();
                             }
                         }
                     }
