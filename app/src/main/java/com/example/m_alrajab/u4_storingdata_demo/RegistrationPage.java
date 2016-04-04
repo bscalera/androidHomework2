@@ -6,6 +6,7 @@ import android.app.DialogFragment;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -76,7 +77,7 @@ public class RegistrationPage extends AppCompatActivity {
         reg_page_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                //make sure all fields are filled in
                 if (userName_EditText.getText().length() == 0 || name_EditText.getText().length() == 0
                         || email_EditText.getText().length() == 0 || password_EditText.getText().length() == 0
                         || confirm_EditText.getText().length() == 0 || birthday_EditText.getText().length() == 0)
@@ -86,73 +87,79 @@ public class RegistrationPage extends AppCompatActivity {
                     toast.show();
                 }
                 else {
-
-                    if (password_EditText.getText().length() < 6) {
-                    /*
-                    If the password is not long enough, a message is shown that says that the password needs to be longer.
-                    http://developer.android.com/guide/topics/ui/notifiers/toasts.html
-                    */
-
-                        Context context = getApplicationContext();
-                        CharSequence text = "Password must be at least 6 characters";
-                        int duration = Toast.LENGTH_LONG;
-
-                        Toast toast = Toast.makeText(context, text, duration);
+                    //check if the username exists
+                    if (checkRecord(userName_EditText.getText().toString())) {
+                        CharSequence text = "That username exists";
+                        Toast toast = Toast.makeText(getApplicationContext(), text, Toast.LENGTH_LONG);
                         toast.show();
-                        //Toast.makeText(context, "Password must be at least 6 characters", Toast.LENGTH_LONG);
                     } else {
-                        //check if the password matches
-                        if (password_EditText.getText().toString().equals(confirm_EditText.getText().toString())) {
-                            //http://stackoverflow.com/questions/2275004/in-java-how-do-i-check-if-a-string-contains-a-substring-ignoring-case
-                            if (email_EditText.getText().toString().toLowerCase().contains("montclair.edu")) {
+                        if (password_EditText.getText().length() < 6) {
+                        /*
+                        If the password is not long enough, a message is shown that says that the password needs to be longer.
+                        http://developer.android.com/guide/topics/ui/notifiers/toasts.html
+                        */
 
-                                boolean isInserted = myDB.insertData(
-                                        usrname.getText().toString(),
-                                        mjr.getSelectedItem().toString(),  //http://stackoverflow.com/questions/1947933/how-to-get-spinner-value
-                                        pss.getText().toString()
+                            Context context = getApplicationContext();
+                            CharSequence text = "Password must be at least 6 characters";
+                            int duration = Toast.LENGTH_LONG;
 
-                                );
-                                if (isInserted = true)
-                                    Toast.makeText(RegistrationPage.this, "Data inserted", Toast.LENGTH_LONG).show();
-                                else
-                                    Toast.makeText(RegistrationPage.this, "Data not inserted", Toast.LENGTH_LONG).show();
+                            Toast toast = Toast.makeText(context, text, duration);
+                            toast.show();
+                            //Toast.makeText(context, "Password must be at least 6 characters", Toast.LENGTH_LONG);
+                        } else {
+                            //check if the password matches
+                            if (password_EditText.getText().toString().equals(confirm_EditText.getText().toString())) {
+                                //http://stackoverflow.com/questions/2275004/in-java-how-do-i-check-if-a-string-contains-a-substring-ignoring-case
+                                if (email_EditText.getText().toString().toLowerCase().contains("montclair.edu")) {
 
-                            /*
-                            editor.putString(getResources().getString(R.string.U4_Username),
-                                    userName_EditText.getText().toString()
+                                    boolean isInserted = myDB.insertData(
+                                            usrname.getText().toString(),
+                                            mjr.getSelectedItem().toString(),  //http://stackoverflow.com/questions/1947933/how-to-get-spinner-value
+                                            pss.getText().toString()
+
                                     );
-                            editor.putString(getResources().getString(R.string.U4_Password),
-                                    userName_EditText.getText().toString()
-                                    );
-                            editor.commit();
-                            */
-                            /*
-                            editor.putString(userName_EditText.getText().toString(),
-                            password_EditText.getText().toString());
-                            editor.commit();
-                            */
+                                    if (isInserted = true)
+                                        Toast.makeText(RegistrationPage.this, "Data inserted", Toast.LENGTH_LONG).show();
+                                    else
+                                        Toast.makeText(RegistrationPage.this, "Data not inserted", Toast.LENGTH_LONG).show();
 
-                                Intent intent = new Intent(RegistrationPage.this, MainActivity.class);
-                                startActivity(intent);
+                                        /*
+                                        editor.putString(getResources().getString(R.string.U4_Username),
+                                                userName_EditText.getText().toString()
+                                                );
+                                        editor.putString(getResources().getString(R.string.U4_Password),
+                                                userName_EditText.getText().toString()
+                                                );
+                                        editor.commit();
+                                        */
+                                        /*
+                                        editor.putString(userName_EditText.getText().toString(),
+                                        password_EditText.getText().toString());
+                                        editor.commit();
+                                        */
+
+                                    Intent intent = new Intent(RegistrationPage.this, MainActivity.class);
+                                    startActivity(intent);
+                                } else {
+                                     /*
+                                     If the email is not a montclair email, a message is shown that says that the email needs to be a montclair email.
+                                     */
+
+                                    Context context = getApplicationContext();
+                                    CharSequence text = "Use a montclair.edu email address";
+                                    int duration = Toast.LENGTH_LONG;
+
+                                    Toast toast = Toast.makeText(context, text, duration);
+                                    toast.show();
+                                }
                             } else {
-                         /*
-                         If the email is not a montclair email, a message is shown that says that the email needs to be a montclair email.
-                         */
-
                                 Context context = getApplicationContext();
-                                CharSequence text = "Use a montclair.edu email address";
+                                CharSequence text = "Password and confirm password should be the same";
                                 int duration = Toast.LENGTH_LONG;
 
                                 Toast toast = Toast.makeText(context, text, duration);
                                 toast.show();
                             }
-                        } else {
-                            Context context = getApplicationContext();
-                            CharSequence text = "Password and confirm password should be the same";
-                            int duration = Toast.LENGTH_LONG;
-
-                            Toast toast = Toast.makeText(context, text, duration);
-                            toast.show();
                         }
                     }
                 }
@@ -224,6 +231,15 @@ public class RegistrationPage extends AppCompatActivity {
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
+    }
+
+    public boolean checkRecord (String username)
+    {
+        Cursor cursor = myDB.getRecForUsername(username);
+        if (cursor.getCount() == 0)
+            return false;  //The username does not exist
+        else
+            return true;  //The username exists
     }
 
     @Override
