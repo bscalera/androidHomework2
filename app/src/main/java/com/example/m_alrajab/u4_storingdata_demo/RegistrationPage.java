@@ -47,100 +47,113 @@ public class RegistrationPage extends AppCompatActivity {
         final Spinner mjr= (Spinner) findViewById(R.id.Reg_SMajor);
         final EditText pss=(EditText) findViewById(R.id.Reg_pass1);
 
-        Button regBtn=(Button) findViewById(R.id.btn_Reg);
-
-        regBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                boolean isInserted = myDB.insertData(
-                        usrname.getText().toString(),
-                        mjr.getSelectedItem().toString(),  //http://stackoverflow.com/questions/1947933/how-to-get-spinner-value
-                        pss.getText().toString()
-
-                );
-                if (isInserted = true)
-                    Toast.makeText(RegistrationPage.this, "Data inserted", Toast.LENGTH_LONG).show();
-                else
-                    Toast.makeText(RegistrationPage.this, "Data not inserted", Toast.LENGTH_LONG).show();
-            }
-        });
-
-
-/*
-        sharedPreferences = getSharedPreferences("U4_Data", Context.MODE_PRIVATE);
-        editor = sharedPreferences.edit();
-
-        Button reg_page_btn = (Button) findViewById(R.id.btn_Reg);
         final EditText userName_EditText = (EditText) findViewById(R.id.Reg_UserName);
         final EditText password_EditText = (EditText) findViewById(R.id.Reg_pass1);
         final EditText email_EditText = (EditText) findViewById(R.id.Reg_Email);
         final EditText confirm_EditText = (EditText) findViewById(R.id.Reg_pass2);
+
+        final EditText name_EditText = (EditText) findViewById(R.id.Reg_SName);
+        final EditText birthday_EditText = (EditText) findViewById(R.id.Reg_dateOfBirth);
+
+
+        sharedPreferences = getSharedPreferences("U4_Data", Context.MODE_PRIVATE);
+        editor = sharedPreferences.edit();
+
+        Button regBtn=(Button) findViewById(R.id.btn_Reg);
+/*
+        regBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+*/
+
+        Button reg_page_btn = (Button) findViewById(R.id.btn_Reg);
+
 
 
         reg_page_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                if (password_EditText.getText().length() < 6) {
+                if (userName_EditText.getText().length() == 0 || name_EditText.getText().length() == 0
+                        || email_EditText.getText().length() == 0 || password_EditText.getText().length() == 0
+                        || confirm_EditText.getText().length() == 0 || birthday_EditText.getText().length() == 0)
+                {
+                    CharSequence text = "All fields must be filled in.";
+                    Toast toast = Toast.makeText(getApplicationContext(), text, Toast.LENGTH_LONG);
+                    toast.show();
+                }
+                else {
+
+                    if (password_EditText.getText().length() < 6) {
                     /*
                     If the password is not long enough, a message is shown that says that the password needs to be longer.
                     http://developer.android.com/guide/topics/ui/notifiers/toasts.html
                     */
-/*
-                    Context context = getApplicationContext();
-                    CharSequence text = "Password must be at least 6 characters";
-                    int duration = Toast.LENGTH_LONG;
 
-                    Toast toast = Toast.makeText(context, text, duration);
-                    toast.show();
-                    //Toast.makeText(context, "Password must be at least 6 characters", Toast.LENGTH_LONG);
-                } else {
-                    //check if the password matches
-                    if (password_EditText.getText().toString().equals(confirm_EditText.getText().toString()))
-                    {
-                        //http://stackoverflow.com/questions/2275004/in-java-how-do-i-check-if-a-string-contains-a-substring-ignoring-case
-                        if (email_EditText.getText().toString().toLowerCase().contains("montclair.edu")) {
+                        Context context = getApplicationContext();
+                        CharSequence text = "Password must be at least 6 characters";
+                        int duration = Toast.LENGTH_LONG;
 
+                        Toast toast = Toast.makeText(context, text, duration);
+                        toast.show();
+                        //Toast.makeText(context, "Password must be at least 6 characters", Toast.LENGTH_LONG);
+                    } else {
+                        //check if the password matches
+                        if (password_EditText.getText().toString().equals(confirm_EditText.getText().toString())) {
+                            //http://stackoverflow.com/questions/2275004/in-java-how-do-i-check-if-a-string-contains-a-substring-ignoring-case
+                            if (email_EditText.getText().toString().toLowerCase().contains("montclair.edu")) {
+
+                                boolean isInserted = myDB.insertData(
+                                        usrname.getText().toString(),
+                                        mjr.getSelectedItem().toString(),  //http://stackoverflow.com/questions/1947933/how-to-get-spinner-value
+                                        pss.getText().toString()
+
+                                );
+                                if (isInserted = true)
+                                    Toast.makeText(RegistrationPage.this, "Data inserted", Toast.LENGTH_LONG).show();
+                                else
+                                    Toast.makeText(RegistrationPage.this, "Data not inserted", Toast.LENGTH_LONG).show();
+
+                            /*
                             editor.putString(getResources().getString(R.string.U4_Username),
                                     userName_EditText.getText().toString()
                                     );
-
-
                             editor.putString(getResources().getString(R.string.U4_Password),
                                     userName_EditText.getText().toString()
                                     );
                             editor.commit();
-
-
+                            */
                             /*
                             editor.putString(userName_EditText.getText().toString(),
                             password_EditText.getText().toString());
                             editor.commit();
                             */
-/*
-                            Intent intent = new Intent(RegistrationPage.this, MainActivity.class);
-                            startActivity(intent);
-                        } else {
+
+                                Intent intent = new Intent(RegistrationPage.this, MainActivity.class);
+                                startActivity(intent);
+                            } else {
                          /*
                          If the email is not a montclair email, a message is shown that says that the email needs to be a montclair email.
                          */
-/*
+
+                                Context context = getApplicationContext();
+                                CharSequence text = "Use a montclair.edu email address";
+                                int duration = Toast.LENGTH_LONG;
+
+                                Toast toast = Toast.makeText(context, text, duration);
+                                toast.show();
+                            }
+                        } else {
                             Context context = getApplicationContext();
-                            CharSequence text = "Use a montclair.edu email address";
+                            CharSequence text = "Password and confirm password should be the same";
                             int duration = Toast.LENGTH_LONG;
 
                             Toast toast = Toast.makeText(context, text, duration);
                             toast.show();
                         }
-                    }
-                    else
-                    {
-                        Context context = getApplicationContext();
-                        CharSequence text = "Password and confirm password should be the same";
-                        int duration = Toast.LENGTH_LONG;
-
-                        Toast toast = Toast.makeText(context, text, duration);
-                        toast.show();
                     }
                 }
             }
