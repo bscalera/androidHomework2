@@ -18,7 +18,7 @@ public final class DBContract {
             public static final String COL_MAJOR = "major";
             public static final String COL_EMAIL = "email";
             public static final String COL_PASS = "password ";
-            public static final String COL_BIRTHDAY = "bithday";
+            //public static final String COL_BIRTHDAY = "birthday";
             public static final int DB_VERSION  = 1 ;
 
         }

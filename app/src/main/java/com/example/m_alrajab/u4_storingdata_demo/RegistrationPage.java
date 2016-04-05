@@ -131,8 +131,8 @@ public class RegistrationPage extends AppCompatActivity {
                                                 usrname.getText().toString(),
                                                 mjr.getSelectedItem().toString(),  //http://stackoverflow.com/questions/1947933/how-to-get-spinner-value
                                                 pss.getText().toString(),
-                                                email_EditText.getText().toString(),
-                                                birthday_EditText.getText().toString()
+                                                email_EditText.getText().toString()
+                                                //birthday_EditText.getText().toString()
 
                                         );
                                         if (isInserted = true)
