@@ -26,7 +26,8 @@ public class DataActivity extends AppCompatActivity {
         updateMajor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                myDB.updateMajor((getID(view, username.getText().toString())), update.getText().toString());
+                //myDB.updateMajor((getID(view, username.getText().toString())), update.getText().toString());
+                myDB.updateData((getID(view, username.getText().toString())), update.getText().toString(), "BEEP!", "PASSWORD!");
             }
         });
 

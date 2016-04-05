@@ -19,6 +19,7 @@ public class MainActivity extends Activity {
         setContentView(R.layout.content_main);
         myDB=new U5_DatabaseHelper(this);
 
+        //register button
         Button reg_button=(Button) findViewById(R.id.btn_register_MA);
         reg_button.setOnClickListener(new OnClickListener() {
             @Override
@@ -28,6 +29,7 @@ public class MainActivity extends Activity {
             }
         });
 
+        //forgot password button
         Button forgot_button=(Button) findViewById(R.id.btn_forgetpassword_MA);
         forgot_button.setOnClickListener((new OnClickListener() {
             @Override
@@ -37,6 +39,7 @@ public class MainActivity extends Activity {
             }
         }));
 
+        //data button
         Button data_button=(Button) findViewById(R.id.btn_data_MA);
         data_button.setOnClickListener((new OnClickListener() {
             @Override
@@ -46,11 +49,12 @@ public class MainActivity extends Activity {
             }
         }));
 
+        //password editText
         EditText editText_password=(EditText) findViewById(R.id.editText_password_MA2);
         editText_password.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
-                Intent intent=new Intent(MainActivity.this, RegistrationPage.class);
+                Intent intent=new Intent(MainActivity.this, LandingScreen.class);
                 startActivity(intent);
                 return false;
             }
