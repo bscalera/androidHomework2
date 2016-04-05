@@ -76,6 +76,16 @@ public class U5_DatabaseHelper extends SQLiteOpenHelper {
         return true;
     }
 
+    public boolean updateMajor(String id, String major)
+    {
+        SQLiteDatabase db=this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(FeedEntry.COL_ID, id);
+        contentValues.put(FeedEntry.COL_MAJOR, major);
+        db.update(FeedEntry.TABLE_NAME, contentValues, "ID=? ", new String[]{id});
+        return true;
+    }
+
     public Integer deleteData(String id){
         SQLiteDatabase db=this.getWritableDatabase();
         return db.delete(FeedEntry.TABLE_NAME, "ID = ?", new String[]{id}); // return 0 or less if nothing d
