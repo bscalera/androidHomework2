@@ -25,7 +25,8 @@ public class U5_DatabaseHelper extends SQLiteOpenHelper {
                 FeedEntry.COL_USERNAME + " TEXT," +
                 FeedEntry.COL_MAJOR + " TEXT," +
                 FeedEntry.COL_EMAIL + " TEXT," +
-                FeedEntry.COL_PASS + " TEXT" +")";
+                FeedEntry.COL_PASS + " TEXT," +
+                FeedEntry.COL_BIRTHDAY + "TEXT" + ")";
         db.execSQL(SQL_String);
 
         /*
@@ -40,7 +41,7 @@ public class U5_DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS"+FeedEntry.TABLE_NAME);
         onCreate(db);
     }
-    public boolean insertData(String username, String major, String password, String email)
+    public boolean insertData(String username, String major, String password, String email, String date)
     {
         SQLiteDatabase db=this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -48,6 +49,7 @@ public class U5_DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(FeedEntry.COL_MAJOR, major);
         contentValues.put(FeedEntry.COL_PASS, password);
         contentValues.put(FeedEntry.COL_EMAIL, email);
+        contentValues.put(FeedEntry.COL_BIRTHDAY, date);
         long result = db.insert(FeedEntry.TABLE_NAME,null,contentValues);
         if(result==-1)
             return false;

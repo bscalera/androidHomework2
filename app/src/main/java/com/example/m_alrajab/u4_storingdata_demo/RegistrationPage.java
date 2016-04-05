@@ -22,7 +22,10 @@ import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 public class RegistrationPage extends AppCompatActivity {
     SharedPreferences sharedPreferences;
@@ -128,7 +131,8 @@ public class RegistrationPage extends AppCompatActivity {
                                                 usrname.getText().toString(),
                                                 mjr.getSelectedItem().toString(),  //http://stackoverflow.com/questions/1947933/how-to-get-spinner-value
                                                 pss.getText().toString(),
-                                                email_EditText.getText().toString()
+                                                email_EditText.getText().toString(),
+                                                birthday_EditText.getText().toString()
 
                                         );
                                         if (isInserted = true)
@@ -205,6 +209,9 @@ public class RegistrationPage extends AppCompatActivity {
         final int day, month, year;
         final Context context;
 
+        //https://examples.javacodegeeks.com/core-java/util/date/java-util-date-example-how-to-use-date
+        Date date = new Date();
+
         reg_page_date_picker.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -237,6 +244,13 @@ public class RegistrationPage extends AppCompatActivity {
 
                             //Month is 0 so add 1
                     .append(month +1).append("/").append(day).append("/").append(year));
+
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+                    try {
+                        Date date = dateFormat.parse(reg_page_date_picker.getText().toString());
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         });
