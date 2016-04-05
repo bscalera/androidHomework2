@@ -209,6 +209,7 @@ public class RegistrationPage extends AppCompatActivity {
         final int day, month, year;
         final Context context;
 
+        //http://stackoverflow.com/questions/6516320/datetime-datatype-in-java
         //https://examples.javacodegeeks.com/core-java/util/date/java-util-date-example-how-to-use-date
         Date date = new Date();
 

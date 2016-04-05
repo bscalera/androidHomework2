@@ -20,7 +20,7 @@ public class ForgetPassword extends AppCompatActivity {
         myDB=new U5_DatabaseHelper(this);
 
         Button allBtn=(Button) findViewById(R.id.fp_all_btn);
-
+        //display all button
         allBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -36,6 +36,17 @@ public class ForgetPassword extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 checkRecord(view, usernameToCheck.getText().toString());
+            }
+        });
+
+        final EditText emailToCheck = (EditText) findViewById(R.id.fp_email_editText);
+        //send password button
+        Button passwordButton=(Button) findViewById(R.id.fp_send_button);
+
+        passwordButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                viewPassword(view, usernameToCheck.getText().toString(), emailToCheck.getText().toString());
             }
         });
     }
@@ -63,5 +74,31 @@ public class ForgetPassword extends AppCompatActivity {
             Snackbar.make(view, "No record exists", Snackbar.LENGTH_LONG).show();
         else
             Snackbar.make(view, "Record exists", Snackbar.LENGTH_LONG).show();
+    }
+
+    public void viewPassword(View view, String username, String email)
+    {
+        Cursor cursorCheck = myDB.getRecForUsername(username);
+        if (cursorCheck.getCount() == 0)
+        {
+            Snackbar.make(view, "That username does not exist", Snackbar.LENGTH_LONG).show();
+        }
+        else
+        {
+            Cursor cursor = myDB.getAllData();
+            while (cursor.moveToNext()) {
+                if (cursor.getString(1).equals(username))
+                {
+                    if (cursor.getString(3).equals(email))
+                    {
+                        Snackbar.make(view, "Your password is: " + cursor.getString(4), Snackbar.LENGTH_INDEFINITE).show();
+                    }
+                    else
+                    {
+                        Snackbar.make(view, "The username and email do not match what is in the database.", Snackbar.LENGTH_LONG).show();
+                    }
+                }
+            }
+        }
     }
 }
