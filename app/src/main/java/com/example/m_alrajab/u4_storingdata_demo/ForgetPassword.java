@@ -89,16 +89,17 @@ public class ForgetPassword extends AppCompatActivity {
             while (cursor.moveToNext()) {
                 if (cursor.getString(1).equals(username))
                 {
-                    if (cursor.getString(3).equals(null))  //check if there is an email address
-                    {
-                        Snackbar.make(view, "Error: There is no email address for that username in the database.", Snackbar.LENGTH_INDEFINITE).show();
-                    }
-                    else {
+                    try {
                         if (cursor.getString(3).equals(email)) {
                             Snackbar.make(view, "Your password is: " + cursor.getString(4), Snackbar.LENGTH_INDEFINITE).show();
                         } else {
                             Snackbar.make(view, "The username and email do not match what is in the database.", Snackbar.LENGTH_LONG).show();
                         }
+                    }
+                    catch (Exception e)  //This will be used if there is no email address
+                    {
+                        Snackbar.make(view, "Error: Most likely the problem is that there is no email address or no password for that username in the database.",
+                                Snackbar.LENGTH_INDEFINITE).show();
                     }
                 }
             }
