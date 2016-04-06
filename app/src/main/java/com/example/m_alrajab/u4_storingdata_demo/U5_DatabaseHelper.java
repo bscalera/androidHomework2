@@ -88,7 +88,8 @@ public class U5_DatabaseHelper extends SQLiteOpenHelper {
 
     public Integer deleteData(String id){
         SQLiteDatabase db=this.getWritableDatabase();
-        return db.delete(FeedEntry.TABLE_NAME, "ID = ?", new String[]{id}); // return 0 or less if nothing d
+        System.out.println("deleteData(" + id + ")");
+        return db.delete(FeedEntry.TABLE_NAME, "entryid = ?", new String[]{id}); // return 0 or less if nothing d
     }
 
     public void deleteDatabase(String dbName){
