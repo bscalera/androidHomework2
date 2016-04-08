@@ -54,7 +54,10 @@ public class MainActivity extends Activity {
         editText_password.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
+                EditText loginUsername=(EditText) findViewById(R.id.editText_name_MA1);
                 Intent intent=new Intent(MainActivity.this, LandingScreen.class);
+                String username = loginUsername.getText().toString();
+                intent.putExtra("username", username);
                 startActivity(intent);
                 return false;
             }
