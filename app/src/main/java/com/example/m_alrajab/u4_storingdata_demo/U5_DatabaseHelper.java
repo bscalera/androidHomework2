@@ -82,7 +82,27 @@ public class U5_DatabaseHelper extends SQLiteOpenHelper {
         ContentValues contentValues = new ContentValues();
         contentValues.put(FeedEntry.COL_ID, id);
         contentValues.put(FeedEntry.COL_MAJOR, major);
-        db.update(FeedEntry.TABLE_NAME, contentValues, "ID=? ", new String[]{id});
+        db.update(FeedEntry.TABLE_NAME, contentValues, "entryid=? ", new String[]{id});
+        return true;
+    }
+
+    public boolean updateEmail(String id, String email)
+    {
+        SQLiteDatabase db=this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(FeedEntry.COL_ID, id);
+        contentValues.put(FeedEntry.COL_EMAIL, email);
+        db.update(FeedEntry.TABLE_NAME, contentValues, "entryid=? ", new String[]{id});
+        return true;
+    }
+
+    public boolean updatePassword(String id, String password)
+    {
+        SQLiteDatabase db=this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(FeedEntry.COL_ID, id);
+        contentValues.put(FeedEntry.COL_PASS, password);
+        db.update(FeedEntry.TABLE_NAME, contentValues, "entryid=? ", new String[]{id});
         return true;
     }
 

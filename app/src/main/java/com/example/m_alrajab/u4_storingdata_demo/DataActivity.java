@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class DataActivity extends AppCompatActivity {
 
@@ -22,19 +23,42 @@ public class DataActivity extends AppCompatActivity {
         Button updateMajor = (Button) findViewById(R.id.btn_major_DA);
         Button updateEmail = (Button) findViewById(R.id.btn_email_DA);
         Button updatePassword = (Button) findViewById(R.id.btn_password_DA);
+        Button deleteData = (Button) findViewById(R.id.btn_delete_DA);
 
         updateMajor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //myDB.updateMajor((getID(view, username.getText().toString())), username.getText().toString());
+                myDB.updateMajor((getID(view, username.getText().toString())), update.getText().toString());
+                Toast.makeText(DataActivity.this, "The data was updated", Toast.LENGTH_LONG).show();
                 //myDB.updateData((getID(view, username.getText().toString())), update.getText().toString(), "BEEP!", "PASSWORD!");
-                System.out.println("Testing testing testing " + getID(view, username.getText().toString()));
-                myDB.deleteData((getID(view, username.getText().toString())));
+                //System.out.println("Testing testing testing " + getID(view, username.getText().toString()));
+                //myDB.deleteData((getID(view, username.getText().toString())));
             }
         });
 
+        updateEmail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                myDB.updateEmail((getID(view, username.getText().toString())), update.getText().toString());
+                Toast.makeText(DataActivity.this, "The data was updated", Toast.LENGTH_LONG).show();
+            }
+        });
 
+        updatePassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                myDB.updatePassword((getID(view, username.getText().toString())), update.getText().toString());
+                Toast.makeText(DataActivity.this, "The data was updated", Toast.LENGTH_LONG).show();
+            }
+        });
 
+        deleteData.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                myDB.deleteData((getID(view, username.getText().toString())));
+                Toast.makeText(DataActivity.this, "The data was deleted", Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
     public String getID (View view, String username){
