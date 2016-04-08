@@ -2,13 +2,16 @@ package com.example.m_alrajab.u4_storingdata_demo;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends Activity {
 
@@ -50,15 +53,43 @@ public class MainActivity extends Activity {
         }));
 
         //password editText
-        EditText editText_password=(EditText) findViewById(R.id.editText_password_MA2);
+        final EditText editText_password=(EditText) findViewById(R.id.editText_password_MA2);
         editText_password.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
+                String password = editText_password.getText().toString();
                 EditText loginUsername=(EditText) findViewById(R.id.editText_name_MA1);
-                Intent intent=new Intent(MainActivity.this, LandingScreen.class);
                 String username = loginUsername.getText().toString();
-                intent.putExtra("username", username);
-                startActivity(intent);
+                Cursor cursorCheck = myDB.getRecForUsername(username);
+                if (cursorCheck.getCount() == 0)
+                {
+                    Toast.makeText(MainActivity.this, "That username does not exist", Toast.LENGTH_LONG).show();
+                }
+                else {
+                    Cursor cursor = myDB.getAllData();
+                    while (cursor.moveToNext()) {
+                        if (cursor.getString(1).equals(username)) {
+                            try {
+                                if (cursor.getString(4).equals(password))
+                                {
+                                    Intent intent = new Intent(MainActivity.this, LandingScreen.class);
+                                    intent.putExtra("username", username);
+                                    startActivity(intent);
+                                    return false;
+                                }
+                                else
+                                {
+                                    Toast.makeText(MainActivity.this, "The password does not match what is in the database for that username.", Toast.LENGTH_LONG).show();
+                                }
+                            }
+                            catch (Exception e)
+                            {
+                                Snackbar.make(textView, "Error: Most likely the problem is that there is no email address or no password for that username in the database.",
+                                        Snackbar.LENGTH_INDEFINITE).show();
+                            }
+                        }
+                    }
+                }
                 return false;
             }
         });

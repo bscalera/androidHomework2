@@ -26,13 +26,10 @@ public class LandingScreen extends AppCompatActivity {
         sharedPreferences.getString(getResources().getString(R.string.U4_Username),"Not found")
         );
         */
-        //String message = intent.getStringExtra("username");
-        Intent intent = getIntent();
-        //String showUsername = intent.getStringExtra(MainActivity."username");
-        //String showUsername = (MainActivity)getIntent().getExtras().get("username");
         Bundle extras = getIntent().getExtras();
         String showUsername;
         showUsername = extras.getString("username");
+        //http://stackoverflow.com/questions/5265913/how-to-use-putextra-and-getextra-for-string-data
         textView.setText(textView.getText().toString() + showUsername);
     }
 
