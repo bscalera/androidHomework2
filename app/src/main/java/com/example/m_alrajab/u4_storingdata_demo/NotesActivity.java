@@ -1,5 +1,6 @@
 package com.example.m_alrajab.u4_storingdata_demo;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -17,7 +18,7 @@ public class NotesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notes);
 
-
+        //save the time that this page is viewed
         logActivity();
 
 
@@ -28,7 +29,8 @@ public class NotesActivity extends AppCompatActivity {
         create.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = new Intent(NotesActivity.this, CreateNote.class);
+                startActivity(intent);
             }
         });
 
@@ -59,8 +61,11 @@ public class NotesActivity extends AppCompatActivity {
         long freeSpace = file.getFreeSpace();
 
         String space = "total space: " + totalSpace + " bytes\n" +
+                totalSpace /1024 /1024 + " megabytes\n\n" +
                 "usable space: " + usableSpace + " bytes\n" +
-                "free space: " + freeSpace + " bytes";
+                usableSpace /1024 /1024 + " megabytes\n\n" +
+                "free space: " + freeSpace + " bytes\n" +
+                freeSpace /1024 /1024 + " megabytes";
 
         Toast.makeText(NotesActivity.this, space, Toast.LENGTH_LONG).show();
 
