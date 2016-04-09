@@ -15,7 +15,7 @@ public class HistoryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_history);
 
         //make a record of when the page was accessed
-        //logActivity();
+        logActivity();
 
         //show the history that is saved in sharedPreferences
         TextView history=(TextView)findViewById(R.id.history_viewHistory_textView);
