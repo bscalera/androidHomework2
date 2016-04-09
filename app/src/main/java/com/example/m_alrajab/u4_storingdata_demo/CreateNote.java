@@ -7,7 +7,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -45,9 +47,32 @@ public class CreateNote extends AppCompatActivity {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+                Toast.makeText(CreateNote.this, getFileContent(file_name), Toast.LENGTH_SHORT).show();
 
             }
         });
+    }
+
+    public String getFileContent (String fileName)
+    {
+        try{
+            FileInputStream noteData = openFileInput(fileName);
+            int c;
+            String temp="";
+
+            while ((c = noteData.read()) != -1)
+            {
+                temp = temp + Character.toString((char)c);
+                //Toast.makeText(CreateNote.this, "note loaded", Toast.LENGTH_SHORT).show();
+            }
+            return temp;
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            Toast.makeText(CreateNote.this, "The file was not found.", Toast.LENGTH_LONG).show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     public void logActivity()

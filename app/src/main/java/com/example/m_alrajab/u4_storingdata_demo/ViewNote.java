@@ -21,10 +21,10 @@ public class ViewNote extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_note);
 
-        logActivity();
+        //logActivity();
 
 
-        viewNote.setText(getFileContent(file_name));
+        //viewNote.setText(getFileContent(file_name));
     }
 
     public String getFileContent (String fileName)

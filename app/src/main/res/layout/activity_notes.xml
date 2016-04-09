@@ -26,8 +26,14 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="View note"
+        android:text="Crash this app"
         android:id="@+id/notes_view_button" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="View note"
+        android:id="@+id/notes_view_button2" />
 
     <Button
         android:layout_width="wrap_content"
