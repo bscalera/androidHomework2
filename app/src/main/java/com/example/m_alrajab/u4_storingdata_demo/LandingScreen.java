@@ -52,9 +52,12 @@ public class LandingScreen extends AppCompatActivity {
     public void logActivity()
     {
         Date currentTime = new Date();
+        String history;
         SharedPreferences sharedPreferences = getSharedPreferences("history", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("date", currentTime.toString());
+        //concatenate the date information to what was already in sharedPreferences
+        history = sharedPreferences.getString("date", "") + "You logged in at: " + currentTime.toString() + "\n";
+        editor.putString("date", history);
         editor.commit();
         //https://www.youtube.com/watch?v=8byyh8Lb_xc
     }
