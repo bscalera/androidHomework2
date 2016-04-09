@@ -37,8 +37,8 @@ public class NotesActivity extends AppCompatActivity {
         viewNote.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
+                Intent intent = new Intent(NotesActivity.this, ViewNote.class);
+                startActivity(intent);
             }
         });
 

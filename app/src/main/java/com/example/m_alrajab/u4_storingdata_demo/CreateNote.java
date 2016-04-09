@@ -16,7 +16,7 @@ import java.util.Date;
 public class CreateNote extends AppCompatActivity {
 
     String data;
-    private String file_name = "myData";
+    private String file_name = "noteFile";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,9 +36,9 @@ public class CreateNote extends AppCompatActivity {
                 data = note.getText().toString();
 
                 try {
-                    FileOutputStream noteFile = openFileOutput(file_name,MODE_PRIVATE);
-                    noteFile.write(data.getBytes());
-                    noteFile.close();
+                    FileOutputStream noteData = openFileOutput(file_name,MODE_PRIVATE);
+                    noteData.write(data.getBytes());
+                    noteData.close();
                     Snackbar.make(view, "note saved", Snackbar.LENGTH_LONG).show();
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
