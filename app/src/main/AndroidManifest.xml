@@ -38,7 +38,8 @@
         <activity android:name=".DataActivity" />
         <activity android:name=".HistoryActivity" />
         <activity android:name=".NotesActivity" />
-        <activity android:name=".CreateNote"></activity>
+        <activity android:name=".CreateNote" />
+        <activity android:name=".ViewNote"></activity>
     </application>
 
 </manifest>

@@ -23,7 +23,7 @@ public class NotesActivity extends AppCompatActivity {
 
 
         Button create = (Button) findViewById(R.id.notes_create_button);
-        Button viewNotes = (Button) findViewById(R.id.notes_view_button);
+        Button viewNote = (Button) findViewById(R.id.notes_view_button);
         Button viewSpace = (Button) findViewById(R.id.notes_freeSpace_button);
 
         create.setOnClickListener(new View.OnClickListener() {
@@ -34,9 +34,10 @@ public class NotesActivity extends AppCompatActivity {
             }
         });
 
-        viewNotes.setOnClickListener(new View.OnClickListener() {
+        viewNote.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
 
             }
         });
