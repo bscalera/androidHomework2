@@ -29,4 +29,10 @@
         android:text="View notes"
         android:id="@+id/notes_view_button" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="View space"
+        android:id="@+id/notes_freeSpace_button" />
+
 </LinearLayout>
