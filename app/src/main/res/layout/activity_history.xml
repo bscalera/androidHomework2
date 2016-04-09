@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:textSize="20sp"
         android:text="Your history:"
-        android:layout_margin="16dp"/>
+        android:layout_margin="5dp"/>
 
     <TextView
         android:layout_width="fill_parent"
@@ -23,6 +23,6 @@
         android:textSize="12sp"
         android:text="Your history goes here."
         android:id="@+id/history_viewHistory_textView"
-        android:layout_margin="16dp"/>
+        android:layout_margin="5dp"/>
 
 </LinearLayout>

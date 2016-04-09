@@ -3,11 +3,13 @@ package com.example.m_alrajab.u4_storingdata_demo;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.Image;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.Date;
@@ -45,6 +47,17 @@ public class LandingScreen extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        //start the notes activity when the image is clicked
+        ImageView notes_button=(ImageView) findViewById(R.id.landingScreen_notes_btn);
+        notes_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(LandingScreen.this, NotesActivity.class);
+                startActivity(intent);
+            }
+        });
+        //http://stackoverflow.com/questions/4617898/how-can-i-give-imageview-click-effect-like-a-button-in-android
 
         //Make a record that the user logged in.
         logActivity();
