@@ -55,6 +55,7 @@ public class LandingScreen extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences("history", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("date", currentTime.toString());
+        editor.commit();
         //https://www.youtube.com/watch?v=8byyh8Lb_xc
     }
 
