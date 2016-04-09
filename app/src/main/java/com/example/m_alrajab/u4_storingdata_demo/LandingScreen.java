@@ -10,6 +10,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.util.Date;
+
 public class LandingScreen extends AppCompatActivity {
 
     SharedPreferences sharedPreferences;
@@ -43,6 +45,17 @@ public class LandingScreen extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        //Make a record that the user logged in.
+        logActivity();
+    }
+    public void logActivity()
+    {
+        Date currentTime = new Date();
+        SharedPreferences sharedPreferences = getSharedPreferences("history", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("date", currentTime.toString());
+        //https://www.youtube.com/watch?v=8byyh8Lb_xc
     }
 
 }
