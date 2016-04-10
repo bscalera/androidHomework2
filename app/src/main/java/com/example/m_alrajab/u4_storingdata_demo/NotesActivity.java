@@ -6,6 +6,7 @@ import android.os.Environment;
 import android.os.StatFs;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -14,6 +15,8 @@ import java.io.File;
 import java.util.Date;
 
 public class NotesActivity extends AppCompatActivity {
+
+    private String file_name = "noteFile";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +31,7 @@ public class NotesActivity extends AppCompatActivity {
         Button viewNote = (Button) findViewById(R.id.notes_view_button);
         Button viewSpace = (Button) findViewById(R.id.notes_freeSpace_button);
         Button viewBlockSize = (Button) findViewById(R.id.notes_blockSize_button);
+        Button deleteNote = (Button) findViewById(R.id.notes_delete_button);
 
         create.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,6 +46,19 @@ public class NotesActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(NotesActivity.this, ViewNote.class);
                 startActivity(intent);
+            }
+        });
+
+        deleteNote.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String path = getFilesDir().getAbsolutePath();
+                File file = new File(path, file_name);
+                boolean delete = file.delete();
+                String deleteMessage = "File deleted: " + path + "/" + file_name + " " + delete;
+                Log.w("Delete Check", deleteMessage);
+                //http://stackoverflow.com/questions/5486529/delete-file-from-internal-storage
+                Toast.makeText(NotesActivity.this, deleteMessage, Toast.LENGTH_LONG).show();
             }
         });
 

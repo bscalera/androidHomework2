@@ -47,8 +47,6 @@ public class CreateNote extends AppCompatActivity {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                Toast.makeText(CreateNote.this, getFileContent(file_name), Toast.LENGTH_SHORT).show();
-
             }
         });
     }
