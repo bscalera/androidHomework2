@@ -26,6 +26,12 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="Edit a note"
+        android:id="@+id/notes_edit_button" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="View note"
         android:id="@+id/notes_view_button" />
 

@@ -40,7 +40,8 @@
         <activity android:name=".NotesActivity" />
         <activity android:name=".CreateNote" />
         <activity android:name=".ViewNote" />
-        <activity android:name=".ViewNote2"></activity>
+        <activity android:name=".ViewNote2" />
+        <activity android:name=".EditNote"></activity>
     </application>
 
 </manifest>

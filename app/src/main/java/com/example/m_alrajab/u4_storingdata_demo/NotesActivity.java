@@ -28,6 +28,7 @@ public class NotesActivity extends AppCompatActivity {
 
 
         Button create = (Button) findViewById(R.id.notes_create_button);
+        Button edit = (Button) findViewById(R.id.notes_edit_button);
         Button viewNote = (Button) findViewById(R.id.notes_view_button);
         Button viewSpace = (Button) findViewById(R.id.notes_freeSpace_button);
         Button viewBlockSize = (Button) findViewById(R.id.notes_blockSize_button);
@@ -37,6 +38,14 @@ public class NotesActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(NotesActivity.this, CreateNote.class);
+                startActivity(intent);
+            }
+        });
+
+        edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(NotesActivity.this, EditNote.class);
                 startActivity(intent);
             }
         });
