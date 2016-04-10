@@ -64,7 +64,7 @@ public class NotesActivity extends AppCompatActivity {
                 String path = getFilesDir().getAbsolutePath();
                 File file = new File(path, file_name);
                 boolean delete = file.delete();
-                String deleteMessage = "File deleted: " + path + "/" + file_name + " " + delete;
+                String deleteMessage = "File deleted: " + delete + "\n" + path + "/" + file_name + " ";
                 Log.w("Delete Check", deleteMessage);
                 //http://stackoverflow.com/questions/5486529/delete-file-from-internal-storage
                 Toast.makeText(NotesActivity.this, deleteMessage, Toast.LENGTH_LONG).show();
