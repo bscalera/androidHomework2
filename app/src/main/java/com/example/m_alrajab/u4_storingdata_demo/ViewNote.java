@@ -14,17 +14,16 @@ import java.util.Date;
 public class ViewNote extends AppCompatActivity {
 
     private String file_name = "noteFile";
-    TextView viewNote = (TextView) findViewById(R.id.viewNote_textView);
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_note);
 
-        //logActivity();
-
-
-        //viewNote.setText(getFileContent(file_name));
+        logActivity();
+        TextView viewNote = (TextView) findViewById(R.id.viewNote_textView);
+        viewNote.setText(getFileContent(file_name));
     }
 
     public String getFileContent (String fileName)
