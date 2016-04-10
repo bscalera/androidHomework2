@@ -2,6 +2,8 @@ package com.example.m_alrajab.u4_storingdata_demo;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Environment;
+import android.os.StatFs;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -25,7 +27,7 @@ public class NotesActivity extends AppCompatActivity {
         Button create = (Button) findViewById(R.id.notes_create_button);
         Button viewNote = (Button) findViewById(R.id.notes_view_button);
         Button viewSpace = (Button) findViewById(R.id.notes_freeSpace_button);
-        Button viewNote2 = (Button) findViewById(R.id.notes_view_button2);
+        Button viewBlockSize = (Button) findViewById(R.id.notes_blockSize_button);
 
         create.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,8 +52,18 @@ public class NotesActivity extends AppCompatActivity {
             }
         });
 
+        viewBlockSize.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                File path = Environment.getDataDirectory();
+                StatFs stat = new StatFs(path.getPath());
+                long blockSize = stat.getBlockSize();
+                //http://stackoverflow.com/questions/4595334/get-free-space-on-internal-memory
 
-
+                String block = String.format("blocksize: " + blockSize);
+                Toast.makeText(NotesActivity.this, block, Toast.LENGTH_LONG).show();
+            }
+        });
 
     }
 
@@ -70,8 +82,6 @@ public class NotesActivity extends AppCompatActivity {
                 freeSpace /1024 /1024 + " megabytes";
 
         Toast.makeText(NotesActivity.this, space, Toast.LENGTH_LONG).show();
-
-
 
         //http://blog.evizija.si/android-storage
         //http://www.mkyong.com/java/how-to-get-free-disk-space-in-java
