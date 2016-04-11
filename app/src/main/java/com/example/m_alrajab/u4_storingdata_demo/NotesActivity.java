@@ -24,7 +24,7 @@ public class NotesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_notes);
 
         //save the time that this page is viewed
-        logActivity();
+        logActivity("You went to the notes page at: ");
 
 
         Button create = (Button) findViewById(R.id.notes_create_button);
@@ -68,6 +68,9 @@ public class NotesActivity extends AppCompatActivity {
                 Log.w("Delete Check", deleteMessage);
                 //http://stackoverflow.com/questions/5486529/delete-file-from-internal-storage
                 Toast.makeText(NotesActivity.this, deleteMessage, Toast.LENGTH_LONG).show();
+
+                if (delete)
+                    logActivity("You deleted a note at: ");
             }
         });
 
@@ -113,13 +116,17 @@ public class NotesActivity extends AppCompatActivity {
         //http://www.mkyong.com/java/how-to-get-free-disk-space-in-java
     }
 
-    public void logActivity()
+    public void logActivity(String text)
     {
+        SharedPreferences userInformation = getSharedPreferences("login", MODE_PRIVATE);
+        userInformation.getString("ID", "");
+        String preferences = "ID" + "history";
+
         Date currentTime = new Date();
         String history;
-        SharedPreferences sharedPreferences = getSharedPreferences("history", MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getSharedPreferences(preferences, MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        history = sharedPreferences.getString("date", "") + "You went to the notes page at: " + currentTime.toString() + "\n";
+        history = sharedPreferences.getString("date", "") + text + currentTime.toString() + "\n";
         editor.putString("date", history);
         editor.commit();
     }

@@ -75,9 +75,13 @@ public class CreateNote extends AppCompatActivity {
 
     public void logActivity()
     {
+        SharedPreferences userInformation = getSharedPreferences("login", MODE_PRIVATE);
+        userInformation.getString("ID", "");
+        String preferences = "ID" + "history";
+
         Date currentTime = new Date();
         String history;
-        SharedPreferences sharedPreferences = getSharedPreferences("history", MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getSharedPreferences(preferences, MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         history = sharedPreferences.getString("date", "") + "You went to the create note page at: " + currentTime.toString() + "\n";
         editor.putString("date", history);

@@ -2,6 +2,7 @@ package com.example.m_alrajab.u4_storingdata_demo;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
@@ -75,6 +76,10 @@ public class MainActivity extends Activity {
                                     Intent intent = new Intent(MainActivity.this, LandingScreen.class);
                                     intent.putExtra("username", username);
                                     startActivity(intent);
+
+                                    //save the login ID and username so that it can be used later
+                                    login(cursor.getString(0), cursor.getString(1));
+
                                     return false;
                                 }
                                 else
@@ -94,6 +99,16 @@ public class MainActivity extends Activity {
             }
         });
 
+    }
+
+    public void login(String ID, String username)
+    {
+        SharedPreferences sharedPreferences = getSharedPreferences("login", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        //concatenate the date information to what was already in sharedPreferences
+        editor.putString("ID", ID);
+        editor.putString("username", username);
+        editor.commit();
     }
 
 
