@@ -41,7 +41,11 @@
         <activity android:name=".CreateNote" />
         <activity android:name=".ViewNote" />
         <activity android:name=".ViewNote2" />
-        <activity android:name=".EditNote"></activity>
+        <activity android:name=".EditNote" />
+        <activity
+            android:name=".TestScroll"
+            android:label="@string/title_activity_test_scroll"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
