@@ -1,11 +1,13 @@
 package com.example.m_alrajab.u4_storingdata_demo;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.TextView;
 
 public class TestScroll extends AppCompatActivity {
 
@@ -24,5 +26,10 @@ public class TestScroll extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+        //show the history that is saved in sharedPreferences
+        TextView history=(TextView)findViewById(R.id.testScroll_history);
+        SharedPreferences sharedPreferences = getSharedPreferences("history", MODE_PRIVATE);
+        history.setText(sharedPreferences.getString("date", "no history"));
     }
 }
