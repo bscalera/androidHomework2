@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import java.io.File;
+import java.util.Arrays;
 import java.util.Date;
 
 public class NotesActivity extends AppCompatActivity {
@@ -30,9 +31,10 @@ public class NotesActivity extends AppCompatActivity {
         Button create = (Button) findViewById(R.id.notes_create_button);
         Button edit = (Button) findViewById(R.id.notes_edit_button);
         Button viewNote = (Button) findViewById(R.id.notes_view_button);
+        Button getDirectory = (Button) findViewById(R.id.notes_list_button);
+        Button deleteNote = (Button) findViewById(R.id.notes_delete_button);
         Button viewSpace = (Button) findViewById(R.id.notes_freeSpace_button);
         Button viewBlockSize = (Button) findViewById(R.id.notes_blockSize_button);
-        Button deleteNote = (Button) findViewById(R.id.notes_delete_button);
         final Button testScroll = (Button) findViewById(R.id.testScroll_button);
 
         create.setOnClickListener(new View.OnClickListener() {
@@ -56,6 +58,17 @@ public class NotesActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(NotesActivity.this, ViewNote.class);
                 startActivity(intent);
+            }
+        });
+
+        getDirectory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String listOfFiles[] = fileList();
+                //http://developer.android.com/guide/topics/data/data-storage.html#filesInternal
+                Toast.makeText(NotesActivity.this, Arrays.toString(listOfFiles), Toast.LENGTH_LONG).show();
+                System.out.println(Arrays.toString(listOfFiles));
+                //http://stackoverflow.com/questions/409784/whats-the-simplest-way-to-print-a-java-array
             }
         });
 

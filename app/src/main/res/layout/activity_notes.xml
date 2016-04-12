@@ -38,6 +38,12 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="View list of notes"
+        android:id="@+id/notes_list_button" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="Delete note"
         android:id="@+id/notes_delete_button" />
 
