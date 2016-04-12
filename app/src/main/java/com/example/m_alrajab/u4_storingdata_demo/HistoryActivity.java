@@ -35,7 +35,7 @@ public class HistoryActivity extends AppCompatActivity {
                 sharedPreferences.edit().clear().commit();
                 //http://stackoverflow.com/questions/3687315/deleting-shared-preferences
 
-                history.setText("");
+                history.setText(sharedPreferences.getString("date", "no history"));
                 Toast.makeText(HistoryActivity.this, "Your history was deleted.", Toast.LENGTH_LONG).show();
 
             }
