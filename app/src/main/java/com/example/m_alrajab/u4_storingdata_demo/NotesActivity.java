@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import java.io.File;
@@ -17,7 +18,7 @@ import java.util.Date;
 
 public class NotesActivity extends AppCompatActivity {
 
-    private String file_name = "noteFile";
+    private String fileName = "noteFile";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +30,7 @@ public class NotesActivity extends AppCompatActivity {
 
 
         Button create = (Button) findViewById(R.id.notes_create_button);
+        final EditText filename = (EditText) findViewById(R.id.notes_fileName_text);
         Button edit = (Button) findViewById(R.id.notes_edit_button);
         Button viewNote = (Button) findViewById(R.id.notes_view_button);
         Button getDirectory = (Button) findViewById(R.id.notes_list_button);
@@ -49,6 +51,7 @@ public class NotesActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(NotesActivity.this, EditNote.class);
+                intent.putExtra("filename", filename.getText().toString());
                 startActivity(intent);
             }
         });
@@ -57,6 +60,7 @@ public class NotesActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(NotesActivity.this, ViewNote.class);
+                intent.putExtra("filename", filename.getText().toString());
                 startActivity(intent);
             }
         });
@@ -75,10 +79,13 @@ public class NotesActivity extends AppCompatActivity {
         deleteNote.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (filename.getText().toString() != null)
+                    fileName = filename.getText().toString();
+
                 String path = getFilesDir().getAbsolutePath();
-                File file = new File(path, file_name);
+                File file = new File(path, fileName);
                 boolean delete = file.delete();
-                String deleteMessage = "File deleted: " + delete + "\n" + path + "/" + file_name + " ";
+                String deleteMessage = "File deleted: " + delete + "\n" + path + "/" + fileName + " ";
                 Log.w("Delete Check", deleteMessage);
                 //http://stackoverflow.com/questions/5486529/delete-file-from-internal-storage
                 Toast.makeText(NotesActivity.this, deleteMessage, Toast.LENGTH_LONG).show();
@@ -103,7 +110,7 @@ public class NotesActivity extends AppCompatActivity {
                 long blockSize = stat.getBlockSize();
                 //http://stackoverflow.com/questions/4595334/get-free-space-on-internal-memory
 
-                String block = String.format("blocksize: " + blockSize);
+                String block = String.format("blocksize: " + blockSize + " bytes per block");
                 Toast.makeText(NotesActivity.this, block, Toast.LENGTH_LONG).show();
             }
         });

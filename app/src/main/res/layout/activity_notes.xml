@@ -23,6 +23,13 @@
         android:text="Create a note"
         android:id="@+id/notes_create_button" />
 
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="name of note"
+        android:id="@+id/notes_fileName_text"
+        />
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
