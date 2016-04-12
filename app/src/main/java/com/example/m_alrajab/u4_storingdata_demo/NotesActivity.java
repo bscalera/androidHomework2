@@ -79,7 +79,7 @@ public class NotesActivity extends AppCompatActivity {
         deleteNote.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (filename.getText().toString() != null)
+                if ((filename.getText().toString().equals("")) == false)
                     fileName = filename.getText().toString();
 
                 String path = getFilesDir().getAbsolutePath();
