@@ -36,7 +36,10 @@
             android:value="@integer/google_play_services_version" />
 
         <activity android:name=".DataActivity" />
-        <activity android:name=".HistoryActivity" />
+        <activity
+            android:name=".HistoryActivity"
+            android:label="@string/title_activity_history"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".NotesActivity" />
         <activity android:name=".CreateNote" />
         <activity android:name=".ViewNote" />
@@ -45,7 +48,7 @@
         <activity
             android:name=".TestScroll"
             android:label="@string/title_activity_test_scroll"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

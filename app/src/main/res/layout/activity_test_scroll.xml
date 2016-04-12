@@ -42,5 +42,6 @@
         android:src="@mipmap/ic_delete_black_24dp"
         app:layout_anchor="@id/app_bar"
         app:layout_anchorGravity="bottom|end" />
+    <!--https://design.google.com/icons-->
 
 </android.support.design.widget.CoordinatorLayout>
