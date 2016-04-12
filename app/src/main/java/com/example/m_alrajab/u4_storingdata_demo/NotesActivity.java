@@ -79,8 +79,12 @@ public class NotesActivity extends AppCompatActivity {
         deleteNote.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                SharedPreferences userInformation = getSharedPreferences("login", MODE_PRIVATE);
                 if ((filename.getText().toString().equals("")) == false)
-                    fileName = filename.getText().toString();
+                {
+                    fileName = userInformation.getString("ID", "") + filename.getText().toString();
+                }
 
                 String path = getFilesDir().getAbsolutePath();
                 File file = new File(path, fileName);
