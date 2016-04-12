@@ -18,7 +18,7 @@ import java.util.Date;
 public class CreateNote extends AppCompatActivity {
 
     String data;
-    private String file_name = "noteFile";
+    private String fileName = "noteFile";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,15 +30,28 @@ public class CreateNote extends AppCompatActivity {
 
         final EditText note = (EditText) findViewById(R.id.cn_note_editText);
         Button create = (Button) findViewById(R.id.cn_create_button);
+        final EditText fileNameEditText = (EditText) findViewById(R.id.cn_fileName_editText);
 
         //create note button
         create.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                SharedPreferences userInformation = getSharedPreferences("login", MODE_PRIVATE);
+                if (fileNameEditText.getText().toString().equals(""))
+                {
+                    fileName = userInformation.getString("ID", "") + fileName;
+                    Toast.makeText(CreateNote.this, "No filename was given, so the default file name was used.", Toast.LENGTH_LONG).show();
+                }
+                else
+                {
+                    fileName = userInformation.getString("ID", "") + fileNameEditText.getText().toString();
+                }
+
                 data = note.getText().toString();
 
                 try {
-                    FileOutputStream noteData = openFileOutput(file_name,MODE_PRIVATE);
+                    FileOutputStream noteData = openFileOutput(fileName,MODE_PRIVATE);
                     noteData.write(data.getBytes());
                     noteData.close();
                     Snackbar.make(view, "note saved", Snackbar.LENGTH_LONG).show();
@@ -49,6 +62,7 @@ public class CreateNote extends AppCompatActivity {
                 }
             }
         });
+
     }
 
     public String getFileContent (String fileName)
@@ -76,8 +90,7 @@ public class CreateNote extends AppCompatActivity {
     public void logActivity()
     {
         SharedPreferences userInformation = getSharedPreferences("login", MODE_PRIVATE);
-        userInformation.getString("ID", "");
-        String preferences = "ID" + "history";
+        String preferences = userInformation.getString("ID", "") + "history";
 
         Date currentTime = new Date();
         String history;

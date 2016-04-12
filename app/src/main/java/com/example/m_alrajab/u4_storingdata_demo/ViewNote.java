@@ -51,8 +51,7 @@ public class ViewNote extends AppCompatActivity {
     public void logActivity()
     {
         SharedPreferences userInformation = getSharedPreferences("login", MODE_PRIVATE);
-        userInformation.getString("ID", "");
-        String preferences = "ID" + "history";
+        String preferences = userInformation.getString("ID", "") + "history";
 
         Date currentTime = new Date();
         String history;

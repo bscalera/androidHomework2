@@ -26,8 +26,7 @@ public class HistoryActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 SharedPreferences userInformation = getSharedPreferences("login", MODE_PRIVATE);
-                userInformation.getString("ID", "");
-                String preferences = "ID" + "history";
+                String preferences = userInformation.getString("ID", "") + "history";
 
 
                 TextView history = (TextView) findViewById(R.id.history_viewHistory_textView);
@@ -45,8 +44,7 @@ public class HistoryActivity extends AppCompatActivity {
         logActivity();
 
         SharedPreferences userInformation = getSharedPreferences("login", MODE_PRIVATE);
-        userInformation.getString("ID", "");
-        String preferences = "ID" + "history";
+        String preferences = userInformation.getString("ID", "") + "history";
 
         //show the history that is saved in sharedPreferences
         TextView history=(TextView)findViewById(R.id.history_viewHistory_textView);
@@ -60,8 +58,7 @@ public class HistoryActivity extends AppCompatActivity {
     public void logActivity()
     {
         SharedPreferences userInformation = getSharedPreferences("login", MODE_PRIVATE);
-        userInformation.getString("ID", "");
-        String preferences = "ID" + "history";
+        String preferences = userInformation.getString("ID", "") + "history";
 
         Date currentTime = new Date();
         String history;

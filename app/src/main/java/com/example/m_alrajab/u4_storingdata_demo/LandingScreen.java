@@ -66,8 +66,7 @@ public class LandingScreen extends AppCompatActivity {
     {
         //saved preferences that should be accessed
         SharedPreferences userInformation = getSharedPreferences("login", MODE_PRIVATE);
-        userInformation.getString("ID", "");
-        String preferences = "ID" + "history";
+        String preferences = userInformation.getString("ID", "") + "history";
 
         //get the time and then save it
         Date currentTime = new Date();
