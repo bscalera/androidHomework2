@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Date;
 
@@ -24,8 +25,19 @@ public class HistoryActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                SharedPreferences userInformation = getSharedPreferences("login", MODE_PRIVATE);
+                userInformation.getString("ID", "");
+                String preferences = "ID" + "history";
+
+
+                TextView history = (TextView) findViewById(R.id.history_viewHistory_textView);
+                SharedPreferences sharedPreferences = getSharedPreferences(preferences, MODE_PRIVATE);
+                sharedPreferences.edit().clear().commit();
+                //http://stackoverflow.com/questions/3687315/deleting-shared-preferences
+
+                history.setText("");
+                Toast.makeText(HistoryActivity.this, "Your history was deleted.", Toast.LENGTH_LONG).show();
+
             }
         });
 
