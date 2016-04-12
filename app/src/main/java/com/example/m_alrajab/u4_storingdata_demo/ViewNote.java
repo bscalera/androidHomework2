@@ -13,7 +13,7 @@ import java.util.Date;
 
 public class ViewNote extends AppCompatActivity {
 
-    private String file_name = "noteFile";
+    private String fileName = "noteFile";
 
 
     @Override
@@ -23,7 +23,22 @@ public class ViewNote extends AppCompatActivity {
 
         logActivity();
         TextView viewNote = (TextView) findViewById(R.id.viewNote_textView);
-        viewNote.setText(getFileContent(file_name));
+
+        Bundle extras = getIntent().getExtras();
+        String filenameFromEditText;
+        filenameFromEditText = extras.getString("filename");
+
+        SharedPreferences userInformation = getSharedPreferences("login", MODE_PRIVATE);
+        if (filenameFromEditText.equals(""))
+        {
+            fileName = userInformation.getString("ID", "") + fileName;
+        }
+        else
+        {
+            fileName = userInformation.getString("ID", "") + filenameFromEditText;
+        }
+
+        viewNote.setText(getFileContent(fileName));
     }
 
     public String getFileContent (String fileName)
