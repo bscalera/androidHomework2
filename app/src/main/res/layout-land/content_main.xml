@@ -73,7 +73,7 @@
                 android:inputType="textPassword"
                 android:hint="i.e. 1234"
                 android:ems="10"
-                android:id="@+id/editText_name_MA2"
+                android:id="@+id/editText_password_MA2"
                 />
         </TableLayout>
     </LinearLayout>
@@ -86,16 +86,27 @@
         >
         <Button
             android:layout_width="0dp"
-            android:layout_weight="1"
+            android:layout_weight="2"
             android:layout_height="wrap_content"
             android:textSize="10dp"
             android:text="Forget password"
             android:id="@+id/btn_forgetpassword_MA"
             android:backgroundTint="#0FFF"
             />
+
         <Button
             android:layout_width="0dp"
             android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:textSize="10dp"
+            android:text="Data"
+            android:id="@+id/btn_data_MA"
+            android:backgroundTint="#0FFF"
+            />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="2"
             android:layout_height="wrap_content"
             android:text="Register"
             android:textSize="10dp"
