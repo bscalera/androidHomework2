@@ -66,10 +66,5 @@
         android:text="View the block size"
         android:id="@+id/notes_blockSize_button" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Test the scroll view"
-        android:id="@+id/testScroll_button" />
 
 </LinearLayout>

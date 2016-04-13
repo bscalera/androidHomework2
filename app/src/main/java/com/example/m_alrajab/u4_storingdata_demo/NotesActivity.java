@@ -37,7 +37,6 @@ public class NotesActivity extends AppCompatActivity {
         Button deleteNote = (Button) findViewById(R.id.notes_delete_button);
         Button viewSpace = (Button) findViewById(R.id.notes_freeSpace_button);
         Button viewBlockSize = (Button) findViewById(R.id.notes_blockSize_button);
-        final Button testScroll = (Button) findViewById(R.id.testScroll_button);
 
         create.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -116,14 +115,6 @@ public class NotesActivity extends AppCompatActivity {
 
                 String block = String.format("blocksize: " + blockSize + " bytes per block");
                 Toast.makeText(NotesActivity.this, block, Toast.LENGTH_LONG).show();
-            }
-        });
-
-        testScroll.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(NotesActivity.this, TestScroll.class);
-                startActivity(intent);
             }
         });
 
