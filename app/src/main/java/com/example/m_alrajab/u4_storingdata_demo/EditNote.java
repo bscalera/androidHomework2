@@ -18,7 +18,7 @@ import java.util.Date;
 public class EditNote extends AppCompatActivity {
 
     String data;
-    private String file_name = "noteFile";
+    private String fileName = "noteFile";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,8 +31,22 @@ public class EditNote extends AppCompatActivity {
         //save the time that the page is clicked
         logActivity("You went to the edit note page at: ");
 
+        Bundle extras = getIntent().getExtras();
+        String filenameFromEditText;
+        filenameFromEditText = extras.getString("filename");
+
+        SharedPreferences userInformation = getSharedPreferences("login", MODE_PRIVATE);
+        if (filenameFromEditText.equals(""))
+        {
+            fileName = userInformation.getString("ID", "") + fileName;
+        }
+        else
+        {
+            fileName = userInformation.getString("ID", "") + filenameFromEditText;
+        }
+
         //put the contents of the file into the EditText field
-        edit.setText(getFileContent(file_name));
+        edit.setText(getFileContent(fileName));
 
         saveEdit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -40,7 +54,7 @@ public class EditNote extends AppCompatActivity {
                 data = edit.getText().toString();
 
                 try {
-                    FileOutputStream noteData = openFileOutput(file_name,MODE_PRIVATE);
+                    FileOutputStream noteData = openFileOutput(fileName,MODE_PRIVATE);
                     noteData.write(data.getBytes());
                     noteData.close();
                     Snackbar.make(view, "note saved", Snackbar.LENGTH_LONG).show();
