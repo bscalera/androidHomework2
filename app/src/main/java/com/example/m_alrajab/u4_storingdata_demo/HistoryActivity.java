@@ -31,7 +31,7 @@ public class HistoryActivity extends AppCompatActivity {
 
                 TextView history = (TextView) findViewById(R.id.history_viewHistory_textView);
                 SharedPreferences sharedPreferences = getSharedPreferences(preferences, MODE_PRIVATE);
-                sharedPreferences.edit().clear().commit();
+                sharedPreferences.edit().clear().apply();
                 //http://stackoverflow.com/questions/3687315/deleting-shared-preferences
 
                 history.setText(sharedPreferences.getString("date", "no history"));
@@ -66,6 +66,6 @@ public class HistoryActivity extends AppCompatActivity {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         history = sharedPreferences.getString("date", "") + "You checked your history at: " + currentTime.toString() + "\n";
         editor.putString("date", history);
-        editor.commit();
+        editor.apply();
     }
 }

@@ -98,6 +98,6 @@ public class CreateNote extends AppCompatActivity {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         history = sharedPreferences.getString("date", "") + "You went to the create note page at: " + currentTime.toString() + "\n";
         editor.putString("date", history);
-        editor.commit();
+        editor.apply();
     }
 }

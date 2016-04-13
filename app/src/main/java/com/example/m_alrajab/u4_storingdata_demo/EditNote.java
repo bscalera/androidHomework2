@@ -103,6 +103,6 @@ public class EditNote extends AppCompatActivity {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         history = sharedPreferences.getString("date", "") + text + currentTime.toString() + "\n";
         editor.putString("date", history);
-        editor.commit();
+        editor.apply();
     }
 }

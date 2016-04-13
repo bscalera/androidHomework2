@@ -74,6 +74,6 @@ public class ViewNote extends AppCompatActivity {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         history = sharedPreferences.getString("date", "") + "You viewed a note at: " + currentTime.toString() + "\n";
         editor.putString("date", history);
-        editor.commit();
+        editor.apply();
     }
 }

@@ -76,7 +76,7 @@ public class LandingScreen extends AppCompatActivity {
         //concatenate the date information to what was already in sharedPreferences
         history = sharedPreferences.getString("date", "") + "You logged in at: " + currentTime.toString() + "\n";
         editor.putString("date", history);
-        editor.commit();
+        editor.apply();
         //https://www.youtube.com/watch?v=8byyh8Lb_xc
     }
 
